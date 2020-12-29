@@ -6,6 +6,8 @@ on:
      - cron: '*/30 * * * *'
   watch:
     types: started
+  repository_dispatch:
+    types: baidu
 jobs:
   build:
     runs-on: ubuntu-latest
