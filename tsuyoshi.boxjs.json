@@ -7,7 +7,7 @@
   "apps": [
     {
       "id": "jkd",
-      "name": "聚看点",
+      "name": "jkdself",
       "keys": ["CookiesJKD3","CookiesJKD4","CookiesJKD5","JKD_WITHDRAW","JKDUA", "JKD_MSG"],
       "author": "@tsuyoshi",
       "repo": "https://github.com/tsuyoshi727/action-group/raw/master/Script/jkdself.js",
