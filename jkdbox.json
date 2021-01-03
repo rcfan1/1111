@@ -8,18 +8,12 @@
     {
       "id": "jkd",
       "name": "聚看点",
-      "keys": ["CookiesJKD2","CookiesJKD3","CookiesJKD4""JKD_WITHDRAW","JKDUA", "JKD_MSG"],
-      "author": "@shylocks",
+      "keys": ["CookiesJKD3","CookiesJKD4","CookiesJKD5
+      ""JKD_WITHDRAW","JKDUA", "JKD_MSG"],
+      "author": "@tsuyoshi",
       "repo": "https://github.com/shylocks/Loon/blob/main/jkd.js",
       "settings": [
         {
-          "id": "CookiesJKD2",
-          "name": "聚看点cookie",
-          "val": "",
-          "type": "number",
-          "placeholder": "",
-          "desc": "格式：['ck1','ck2']，括号和引号都要填写"
-        },{
           "id": "CookiesJKD3",
           "name": "聚看点cookie",
           "val": "",
@@ -28,6 +22,13 @@
           "desc": "格式：['ck1','ck2']，括号和引号都要填写"
         },{
           "id": "CookiesJKD4",
+          "name": "聚看点cookie",
+          "val": "",
+          "type": "number",
+          "placeholder": "",
+          "desc": "格式：['ck1','ck2']，括号和引号都要填写"
+        },{
+          "id": "CookiesJKD5",
           "name": "聚看点cookie",
           "val": "",
           "type": "number",
