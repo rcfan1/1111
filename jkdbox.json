@@ -1,9 +1,9 @@
 {
-  "id": "shylocks.app.sub",
+  "id": "tsuyoshi.app.sub",
   "name": "多账号",
-  "author": "@shylocks",
+  "author": "@tsuyosh",
   "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/baicao.png",
-  "repo": "https://github.com/shylocks/Scripts/tree/main",
+  "repo": "https://github.com/tsuyoshi727/action-group",
   "apps": [
     {
       "id": "jkd",
