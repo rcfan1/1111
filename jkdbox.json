@@ -11,7 +11,7 @@
       "keys": ["CookiesJKD3","CookiesJKD4","CookiesJKD5
       ""JKD_WITHDRAW","JKDUA", "JKD_MSG"],
       "author": "@tsuyoshi",
-      "repo": "https://github.com/shylocks/Loon/blob/main/jkd.js",
+      "repo": "https://github.com/tsuyoshi727/action-group/raw/master/Script/jkdself.js",
       "settings": [
         {
           "id": "CookiesJKD3",
@@ -57,7 +57,7 @@
           "desc": ""
         }],
       "icons": [],
-      "script": "https://raw.githubusercontent.com/shylocks/Loon/main/jkd.js"
+      "script": "https://github.com/tsuyoshi727/action-group/raw/master/Script/jkdself.js"
     }
   ]
 }
