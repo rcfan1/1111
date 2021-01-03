@@ -1,8 +1,8 @@
 {
   "id": "shylocks.app.sub",
-  "name": "shylocks 签到应用订阅",
+  "name": "多账号",
   "author": "@shylocks",
-  "icon": "https://avatars0.githubusercontent.com/u/5812638?s=460&u=7809808d21bd48a6c19c0dece533e92d4bb34151&v=4",
+  "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/baicao.png",
   "repo": "https://github.com/shylocks/Scripts/tree/main",
   "apps": [
     {
