@@ -38,6 +38,7 @@ jobs:
           node Task/xpwhile.js
         env:
           VIDEOHEADER: ${{ secrets.VIDEOHEADER }}
+          GOLDBODY: ${{ secrets.GOLDBODY }}
           VIDEOBODY: ${{ secrets.VIDEOBODY }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
