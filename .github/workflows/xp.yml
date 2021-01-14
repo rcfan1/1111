@@ -5,8 +5,8 @@ name: 笑谱
 
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: '0 */6 * * *'
+  schedule:
+    - cron: '0 */6 * * *'
   watch:
     types: started
   repository_dispatch:
@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【笑谱】'
         run: |
-          node Task/xp.js
+          node Task/xpwhile.js
         env:
           VIDEOHEADER: ${{ secrets.VIDEOHEADER }}
           VIDEOBODY: ${{ secrets.VIDEOBODY }}
