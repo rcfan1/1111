@@ -25,7 +25,7 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【笑谱】'
+      - name: '运行 【BBB】'
         run: |
           node Node/BBB.js
         env:
