@@ -54,6 +54,10 @@ if(CookieVal)$.setdata(CookieVal,'bbb_ck')
 } else {
 !(async () => {
 
+while(true){
+  
+    
+
 $.msg($.name,"開始🎉🎉🎉")
 
       await userInfo()
@@ -86,6 +90,9 @@ var getBoxId = (function () {
     return function () {
         return ++i;
     };
+    }
+    console.log(`========================本次任务执行完毕，休息二十分钟==============================\n`);
+         await $.wait(1200000)
 })();
 
 
