@@ -35,7 +35,9 @@ let notice = ''
 let CookieVal = '{"tokenstr":"30B933FF7C8E188DBB0E19135526466G1611113251","Accept":"*/*","version":"10","idfa":"CF751078-9BC9-4B82-82C7-B1FB57E123F9","Host":"bububao.duoshoutuan.com","Accept-Language":"zh-cn","platform":"2","imei":"C3D50E86-F776-4D81-99D5-3D3AC8BA3A54","Content-Length":"0","User-Agent":"BBB/132 CFNetwork/978.0.7 Darwin/18.7.0","Connection":"keep-alive","Accept-Encoding":"br, gzip, deflate","store":"appstore","Cookie":"PHPSESSID=ugqjbnuf79qe44iddahnah9ev7"}'
 
 if ($.isNode()) {
+
 while(true){
+
       console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
 }
@@ -72,6 +74,48 @@ $.msg($.name,"開始🎉🎉🎉")
       await guaList()
       await checkHomeJin()
       await showmsg()
+      
+    console.log(`========================本次任务执行完毕，休息二十分钟==============================\n`);
+         await $.wait(1200000)
+         }
+         }else{
+         console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
+      console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
+}
+
+
+
+now = new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000);  
+
+if (typeof $request !== 'undefined') {
+   if ($request && $request.method != `OPTIONS` && $request.url.indexOf('user/profile') != -1) {
+     const CookieVal = JSON.stringify($request.headers)
+if(CookieVal)$.setdata(CookieVal,'bbb_ck')
+     $.log(`CookieVal:${CookieVal}`)
+     $.msg($.name,"获取Cookie成功")
+     $.done()
+   }
+} else {
+!(async () => {
+  
+    
+
+$.msg($.name,"開始🎉🎉🎉")
+
+      await userInfo()
+      await signIn()
+      await zaoWanDkInfo()
+      await sleepStatus()
+      await checkWaterNum()
+      await clickTaskStatus()
+      await watchTaskStatus()
+      await helpStatus()
+      await getNewsId()
+      await getQuestionId()
+      await guaList()
+      await checkHomeJin()
+      await showmsg()
+         
 
 })()
     .catch((e) => $.logErr(e))
@@ -91,9 +135,6 @@ var getBoxId = (function () {
     };
     
 })();
-}
-    console.log(`========================本次任务执行完毕，休息二十分钟==============================\n`);
-         await $.wait(1200000)
 
 
 
