@@ -28,6 +28,12 @@ jobs:
       - name: '运行 【BBB】'
         run: |
           node Node/BBB.js
+      - name: '运行 【BBB2】'
+        run: |
+          node Node/BBB-momo.js
+      - name: '运行 【BBB3】'
+        run: |
+          node Node/BBB-yun.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
