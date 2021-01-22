@@ -29,8 +29,8 @@ jobs:
         run: |
           node Node/zcy.js
         env:
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}
-          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          ZCYBODY: ${{ secrets.ZCYBODY }}
+          ZCYHEADER: ${{ secrets.ZCYHEADER }}
           BARK_SOUND: ${{ secrets.BARK_SOUND }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
