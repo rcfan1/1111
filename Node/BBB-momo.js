@@ -115,7 +115,7 @@ $.msg($.name,"開始🎉🎉🎉")
       await guaList()
       await checkHomeJin()
       await showmsg()
-         
+         }
 
 })()
     .catch((e) => $.logErr(e))
