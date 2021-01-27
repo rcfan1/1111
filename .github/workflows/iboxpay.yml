@@ -27,7 +27,7 @@ jobs:
           npm install
       - name: '运行 【笑谱】'
         run: |
-          node XP/iboxpay.js
+          node Node/iboxpay.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
