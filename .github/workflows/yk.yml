@@ -27,9 +27,9 @@ jobs:
         run: |
           node Node/yk.js
       - name: '休息1分钟'
-      uses: jakejarvis/wait-action@master
-      with:
-        time: '1m'
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '1m'
       - name: '运行 【一刻2】'
         run: |
           node Node/yk.js
