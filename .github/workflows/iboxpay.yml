@@ -34,6 +34,9 @@ jobs:
       - name: '运行 【笑谱3】'
         run: |
           node Node/iboxpay.js
+      - name: '运行 【笑谱4】'
+        run: |
+          node Node/iboxpay.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
