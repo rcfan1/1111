@@ -28,7 +28,7 @@ jobs:
       - name: '运行 【百度极速】'
         if: env.BAIDU_COOKIE
         run: |
-          node Task/baidu_cash.js
+          node Task/baidu_speed.js
       - name: '休息10分钟'
         uses: jakejarvis/wait-action@master
         with:
