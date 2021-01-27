@@ -38,11 +38,6 @@ jobs:
         run: |
           node Node/iboxpay.js
         env:
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}
-          BARK_PUSH: ${{ secrets.BARK_PUSH }}
-          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          XP_CASH: ${{ secrets.XP_CASH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
-          QQREAD_CASH: ${{ secrets.QQREAD_CASH }}
