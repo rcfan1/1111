@@ -39,5 +39,6 @@ jobs:
           node Node/iboxpay.js
         env:
           XP_CASH: ${{ secrets.XP_CASH }}
+          XP_live: ${{ secrets.XP_live }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
