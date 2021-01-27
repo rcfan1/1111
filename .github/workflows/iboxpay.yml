@@ -5,8 +5,8 @@ name: iboxpay
 
 on:
     workflow_dispatch:
-    #schedule:
-      #- cron: "*/20 0 * * *"
+    schedule:
+      - cron: "0 */1 * * *"
     watch:
       types: [started]
     repository_dispatch:
@@ -25,7 +25,13 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【笑谱】'
+      - name: '运行 【笑谱1】'
+        run: |
+          node Node/iboxpay.js
+      - name: '运行 【笑谱2】'
+        run: |
+          node Node/iboxpay.js
+      - name: '运行 【笑谱3】'
         run: |
           node Node/iboxpay.js
         env:
