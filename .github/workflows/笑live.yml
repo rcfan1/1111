@@ -27,30 +27,14 @@ jobs:
           npm install
       - name: '运行 【1】'
         run: |
-          node Node/iboxpay.js
+          node Node/XPZB.js
+      - name: '休息3分钟'
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '3m'
       - name: '运行 【2】'
         run: |
-          node Node/iboxpay.js
-      - name: '休息3分钟'
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '3m'
-      - name: '运行 【3】'
-        run: |
-          node Node/iboxpay.js
-      - name: '运行 【4】'
-        run: |
-          node Node/iboxpay.js
-      - name: '休息3分钟'
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '3m'
-      - name: '运行 【5】'
-        run: |
-          node Node/iboxpay.js
-      - name: '运行 【6】'
-        run: |
-          node Node/iboxpay.js
+          node Node/XPZB.js
         env:
           XP_CASH: ${{ secrets.XP_CASH }}
           XP_live: ${{ secrets.XP_live }}
