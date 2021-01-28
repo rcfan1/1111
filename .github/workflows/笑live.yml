@@ -31,20 +31,20 @@ jobs:
       - name: '运行 【2】'
         run: |
           node Node/iboxpay.js
-      - name: '休息一会'
-        uses: m3y/random-wait-action@v1
+      - name: '休息3分钟'
+        uses: jakejarvis/wait-action@master
         with:
-          max-wait-time: 5
+          time: '3m'
       - name: '运行 【3】'
         run: |
           node Node/iboxpay.js
       - name: '运行 【4】'
         run: |
           node Node/iboxpay.js
-      - name: '休息一会'
-        uses: m3y/random-wait-action@v1
+      - name: '休息3分钟'
+        uses: jakejarvis/wait-action@master
         with:
-          max-wait-time: 5
+          time: '3m'
       - name: '运行 【5】'
         run: |
           node Node/iboxpay.js
