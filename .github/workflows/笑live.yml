@@ -28,10 +28,6 @@ jobs:
       - name: '运行 【1】'
         run: |
           node Node/iboxpay.js
-      - name: '休息一会'
-        uses: m3y/random-wait-action@v1
-        with:
-          max-wait-time: 5
       - name: '运行 【2】'
         run: |
           node Node/iboxpay.js
@@ -42,10 +38,6 @@ jobs:
       - name: '运行 【3】'
         run: |
           node Node/iboxpay.js
-      - name: '休息一会'
-        uses: m3y/random-wait-action@v1
-        with:
-          max-wait-time: 5
       - name: '运行 【4】'
         run: |
           node Node/iboxpay.js
@@ -56,10 +48,6 @@ jobs:
       - name: '运行 【5】'
         run: |
           node Node/iboxpay.js
-      - name: '休息一会'
-        uses: m3y/random-wait-action@v1
-        with:
-          max-wait-time: 5
       - name: '运行 【6】'
         run: |
           node Node/iboxpay.js
