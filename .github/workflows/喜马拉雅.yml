@@ -25,12 +25,6 @@ jobs:
         run: pip install -r ./requirements.txt 
         
       - name: 'run 喜马拉雅极速版' 
-        run: python3 xmly_speed.py
-      - name: '休息3分钟'
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '3m'
-      - name: 'run 喜马拉雅极速版2' 
         run: python3 xmly_speed.py 
         env:
             XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}  #必须
