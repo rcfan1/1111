@@ -1,4 +1,4 @@
-/* ziye 
+/* ziye  单直播版
 
 github地址 https://github.com/ziye12
 TG频道地址  https://t.me/ziyescript
@@ -8,16 +8,13 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 转载请备注个名字，谢谢
 ⚠️笑谱
 脚本运行一次   
-则运行6次视频 1次金蛋 或者 6次直播（直播默认关闭，且在视频金币达到上限后有效）
+4次直播（直播默认开启60次）
 
 
+此版本为单直播版
 
+1.29修复次数问题
 
-1.15 调整金蛋延迟为60秒
-1.17 增加ck失效提醒，以及金币满额停止
-1.27 笑谱恢复，活动id284
-1.27-2 增加看直播功能，默认关闭，设置LIVE来开启  如 设置LIVE 为 60 则开启直播，并且次数达到60次停止
-1.27-3 调整直播运行次数，运行一次脚本，执行6次直播
 
 
 ⚠️一共1个位置 1个ck  👉 2条 Secrets 
@@ -96,8 +93,7 @@ console.log(ddtime)
 
 if ($.isNode()) {
  // 没有设置 XP_CASH 则默认为 0 不提现
- CASH = process.env.XP_CASH || 15;
- // 没有设置 XP_live 则默认为 0 不开启
+ CASH = process.env.XP_CASH || 0;
  LIVE = process.env.XP_live || 60;
 } 
 if ($.isNode() && process.env.XP_iboxpayHEADER) {
@@ -138,7 +134,7 @@ if ($.isNode()) {
       CASH = $.getval("iboxpayCASH")|| '0';
     }
   if ("iboxpayLIVE") {
-      LIVE = $.getval("iboxpayLIVE")|| '0';
+      LIVE = $.getval("iboxpayLIVE")|| '60';
     }
 	
 	
@@ -511,9 +507,6 @@ $.message +=
 function lives(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
-
-
-
 for (let i = 0; i < CS; i++) {
 $.index = i+1	
 do RT = Math.floor(Math.random()*45000);
@@ -568,8 +561,6 @@ $.message +='【直播奖励】：'+$.lives.errorDesc+'\n';
 function sylist(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
-
-
 if ($.isNode()) {
 	tts = Math.round(new Date().getTime() +
 new Date().getTimezoneOffset() * 60 * 1000 ).toString();
