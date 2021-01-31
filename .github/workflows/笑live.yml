@@ -6,7 +6,7 @@ name: 笑live
 on:
     workflow_dispatch:
     schedule:
-      - cron: "0 4-11 * * *"
+      - cron: "0 1-5 * * *"
     watch:
       types: [started]
     repository_dispatch:
@@ -42,7 +42,20 @@ jobs:
       - name: '运行 【3】'
         run: |
           node Node/XPZB.js
-      
+      - name: '休息2分钟'
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '2m'
+      - name: '运行 【4】'
+        run: |
+          node Node/XPZB.js
+      - name: '休息2分钟'
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '2m'
+      - name: '运行 【5】'
+        run: |
+          node Node/XPZB.js
         env:
           XP_CASH: ${{ secrets.XP_CASH }}
           XP_live: ${{ secrets.XP_live }}
