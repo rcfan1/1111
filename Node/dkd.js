@@ -279,7 +279,7 @@ await dkdcj()
 await dkdfx()
 await dkdxs()
 await dkdxx()
-console.log(`========================本次任务执行完毕，休息6分钟==============================\n`);
+console.log(`==============休息6分钟==============\n`);
         await $.wait(360000)
 }
 }else{
