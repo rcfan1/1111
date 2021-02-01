@@ -269,7 +269,7 @@ if(result.status_code == 10020){
 
 }
 
-  if ($.isNode()) {
+if ($.isNode()) {
       while(true){
 //await dkdtx()  提现暂时无法使用
 await dkdgg()
@@ -279,8 +279,8 @@ await dkdcj()
 await dkdfx()
 await dkdxs()
 await dkdxx()
-console.log(`========================本次任务执行完毕，休息5分钟==============================\n`);
-        await $.wait(300000)
+console.log(`========================本次任务执行完毕，休息6分钟==============================\n`);
+        await $.wait(360000)
 }
 }else{
 //await dkdtx()  提现暂时无法使用
