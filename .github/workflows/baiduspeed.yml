@@ -3,7 +3,7 @@ name: 百度极速版
 on:
   workflow_dispatch:
   schedule:
-     - cron: '10 */1 * * *'
+     - cron: '*/30 * * * *'
   watch:
     types: started
 jobs:
@@ -27,16 +27,8 @@ jobs:
         if: env.BAIDU_COOKIE
         run: |
           node Task/baidu_speed.js
-      - name: '休息10分钟'
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '10m'
-      - name: '运行 【百度极速2】'
-        if: env.BAIDU_COOKIE
-        run: |
-          node Task/baidu_speed.js
-      
         env:
+          BAIDU_CASH: ${{ secrets.BAIDU_CASH }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
