@@ -268,6 +268,9 @@ if(result.status_code == 10020){
         console.log('签到回执:失败🚫 '+result.message)
 
 }
+
+  if ($.isNode()) {
+      while(true){
 //await dkdtx()  提现暂时无法使用
 await dkdgg()
 await dkdbx()
@@ -276,6 +279,20 @@ await dkdcj()
 await dkdfx()
 await dkdxs()
 await dkdxx()
+console.log(`========================本次任务执行完毕，休息5分钟==============================\n`);
+        await $.wait(300000)
+}
+}else{
+//await dkdtx()  提现暂时无法使用
+await dkdgg()
+await dkdbx()
+await dkdbxfb()
+await dkdcj()
+await dkdfx()
+await dkdxs()
+await dkdxx()
+}
+
         } catch (e) {
           //$.logErr(e, resp);
         } finally {
