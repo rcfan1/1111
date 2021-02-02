@@ -279,8 +279,8 @@ await dkdcj()
 await dkdfx()
 await dkdxs()
 await dkdxx()
-console.log(`==============休息6分钟==============\n`);
-        await $.wait(360000)
+console.log(`==============休息10分钟==============\n`);
+        await $.wait(600000)
 }
 }else{
 //await dkdtx()  提现暂时无法使用
