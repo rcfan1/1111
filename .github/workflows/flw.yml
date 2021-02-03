@@ -6,7 +6,7 @@ name: 返利网
 on:
     workflow_dispatch:
     schedule:
-      - cron: "0 4,12 * * *"
+      - cron: "0 2,10 * * *"
     watch:
       types: [started]
     repository_dispatch:
