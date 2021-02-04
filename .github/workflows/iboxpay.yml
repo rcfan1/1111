@@ -38,6 +38,8 @@ jobs:
         run: |
           node Node/iboxpay.js
         env:
+          XP_iboxpayHEADER: ${{ secrets.XP_iboxpayHEADER }}
+          XP_refreshTOKEN: ${{ secrets.XP_refreshTOKEN }}
           XP_CASH: ${{ secrets.XP_CASH }}
           XP_live: ${{ secrets.XP_live }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
