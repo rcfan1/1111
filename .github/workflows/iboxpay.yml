@@ -27,7 +27,7 @@ jobs:
           npm install
       - name: '运行 【笑谱1】'
         run: |
-          node Node/test.js
+          node Node/iboxpay.js
       - name: '运行 【笑谱2】'
         run: |
           node Node/iboxpay.js
