@@ -299,32 +299,8 @@ async function all() {
         await hdid(); //活动id
         await newcashlist(); //提现查询
         await cashlist(); //今日提现查询
-        if (!cashcs.amount && CASH >= 1 && $.coin.data.balance / 100 >= CASH) {
-            await withdraw(); //提现
-        }
-        if (LIVE >= 1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23) {
-            await sylist(); //收益列表
-            if ($.sylist.resultCode && livecs < LIVE) {
-                await liveslist(); //直播节目表
-                await lives(); //看直播
-            }
-        }
-
-        if (liveIdcd < CS && LIVE != 61) {
-            dd = CS * 35
-        } else dd = liveIdcd * 35
-
-        console.log(`📍本次运行等待${dd}秒` + '\n')
-        if (LIVE != 61) {
-            await play(); //播放       
-            await video(); //视频
-            if (!newcashcs.amount) {
-                await newvideo(); //新人福利
-            }
-            //if ($.video.data && $.video.data.goldCoinNumber != 0) {
-                //await goldvideo(); //金蛋视频
-//            }
-        }
+        await play(); //播放       
+        await video(); //视频
         await $.wait(dd * 1000)
     }
 }
