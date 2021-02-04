@@ -36,7 +36,7 @@ jobs:
           node Node/iboxpay.js
       - name: '运行 【笑谱4】'
         run: |
-          node Node/iboxpay.js
+          node Node/test.js
         env:
           XP_iboxpayHEADER: ${{ secrets.XP_iboxpayHEADER }}
           XP_refreshTOKEN: ${{ secrets.XP_refreshTOKEN }}
