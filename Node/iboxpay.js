@@ -30,6 +30,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.4 修复金蛋问题，增加视频收益统计，增加上限判定，达到上限以及19点后不执行视频，
 2.4 直播限制为30  设置LIVE为0 不跑直播，1跑直播和视频，2单跑直播
 2.5 增加首次视频验证，灰号直接停止视频
+2.6 修复判定错误,增加surge获取token重写
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -55,7 +56,7 @@ CASH  👉  XP_CASH
 
 ⚠️主机名以及重写👇
 
-（圈x可以获取refreshTOKEN     其他开启抓包，然后登录笑谱，找到 https://veishop.iboxpay.com/nf_gateway/nf-user-auth-web/ignore_tk/veishop/v1/ 里的响应体 refreshTOKEN）
+（圈x  surge可以获取refreshTOKEN     其他开启抓包，然后登录笑谱，找到 https://veishop.iboxpay.com/nf_gateway/nf-user-auth-web/ignore_tk/veishop/v1/ 里的响应体 refreshTOKEN）
 
 hostname=veishop.iboxpay.com
 
@@ -73,6 +74,12 @@ http-request https:\/\/veishop\.iboxpay\.com\/* script-path=https://raw.githubus
 #笑谱获取header
 笑谱获取header = type=http-request,pattern=https:\/\/veishop\.iboxpay\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js, script-update-interval=0
 
+
+#笑谱获取更新TOKEN
+笑谱获取更新TOKEN = type=http-response,pattern=https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf-user-auth-web\/ignore_tk\/veishop\/v1\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js
+
+
+
 */
 const $ = Env("笑谱");
 $.idx = ($.idx = ($.getval('iboxpaySuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
@@ -85,6 +92,7 @@ const CS = 5
 $.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '', ddtime = '', spid = '', TOKEN = '', zbid = '', cashcs = '', newcashcs = '', liveId = '';
 let livecs = 0,
     videoscs = 0,
+    LIVES = 0,
     liveIdcd = 0;
 RT = 30000;
 const iboxpayheaderArr = [];
@@ -276,6 +284,7 @@ async function all() {
         return;
     }
     for (let i = 0; i < Length; i++) {
+
         if (COOKIE.iboxpayheaderVal) {
             iboxpayheaderVal = XP_COOKIES.iboxpayheaderVal[i];
             refreshtokenVal = XP_COOKIES.refreshtokenVal[i];
@@ -322,7 +331,7 @@ async function all() {
             await playo(); //播放o       
             await videoo(); //视频o
 
-            if (LIVE != 2) {
+            if (LIVES != 2) {
                 await $.wait(30000)
                 tt = CS * 30 - 29
                 console.log(`📍本次视频运行需要${tt}秒` + '\n')
@@ -557,15 +566,17 @@ function videoo(timeout = 0) {
                     if (logs) $.log(`${O}, 视频🚩: ${data}`);
                     $.videoo = JSON.parse(data);
                     if ($.videoo.resultCode == 0) {
+                        LIVES = 2
                         console.log('视频奖励：⚠️' + $.videoo.errorDesc + '\n');
                         $.message += '【视频奖励】：⚠️' + $.videoo.errorDesc + '\n'
                     }
                     if ($.videoo.data && $.videoo.data.goldCoinNumber == 0) {
-                        LIVE = 2
+                        LIVES = 2
                         console.log(`视频奖励：恭喜您的账号已灰，已无法获取视频奖励\n`);
                         $.message += `【视频奖励】：恭喜您的账号已灰，已无法获取视频奖励\n`
                     }
                     if ($.videoo.data && $.videoo.data.goldCoinNumber != 0) {
+LIVES = 0
                         console.log(`开始领取第1次视频奖励，获得${$.videoo.data.goldCoinNumber}金币\n`);
                         console.log(`视频奖励：共领取1次视频奖励，共${$.videoo.data.goldCoinNumber}金币\n`);
                         $.message += `【视频奖励】：共领取1次视频奖励，共${$.videoo.data.goldCoinNumber}金币\n`
