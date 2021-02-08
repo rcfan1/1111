@@ -5,8 +5,8 @@ name: 笑谱
 
 on:
   workflow_dispatch:
-  schedule:
-     - cron: '*/15 8-23 * * *'
+  #schedule:
+     #- cron: '*/15 8-23 * * *'
   watch:
     types: started
   repository_dispatch:
