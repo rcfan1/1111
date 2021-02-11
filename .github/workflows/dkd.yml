@@ -35,8 +35,7 @@ jobs:
         run: |
           cd ~/JavaScript
           node Task/duokandian.js
-        env:
-          
+        env:          
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
