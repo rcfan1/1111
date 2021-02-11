@@ -18,7 +18,7 @@ jobs:
     env:
         DKD_duokandianvideoBODY: ${{ secrets.DKD_duokandianvideoBODY }}
         DKD_duokandianBODY: ${{ secrets.DKD_duokandianBODY }}
-        DKD_duokandianCASH: ${{ DKD_duokandianCASH }}
+        DKD_duokandianCASH: ${{ secrets.DKD_duokandianCASH }}
     steps:
       - name: Checkout
         run: |
