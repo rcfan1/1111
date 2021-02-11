@@ -28,12 +28,10 @@ jobs:
         with:
           node-version: 12.x
       - name: npm install
-        if: env.DKD_duokandianBODY
         run: |
           cd ~/JavaScript
           npm install
       - name: '运行 【dkd】'
-        if: env.DKD_duokandianBODY
         run: |
           cd ~/JavaScript
           node Task/duokandian.js
