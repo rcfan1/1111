@@ -19,7 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
         with:
-          repository: Private-Script/Scripts        
+          repository: Private-Script/Scripts
+          ref: master        
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
