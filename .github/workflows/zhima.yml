@@ -6,11 +6,11 @@ name: 芝嫲视频
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 1 1 *' # UTC时间 +8 北京
+    - cron: '0 */1 * * *' # UTC时间 +8 北京
   watch:
     types: started
   repository_dispatch:
-    types: started
+    types: zhima
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -40,6 +40,6 @@ jobs:
           cd ~/JavaScript/Task
           node zhima.js
         env:
-          TZ: Asia/shanghai
-          BARK_PUSH: ${{ secrets.BARK_PUSH }}
           ZM_zhimabody: ${{ secrets.ZM_zhimabody }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
