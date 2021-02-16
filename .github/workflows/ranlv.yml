@@ -19,8 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
         with:
-          repository: Private-Script/Scripts
-          ref: master        
+          repository: heiwoya/lqbz        
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
