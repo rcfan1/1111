@@ -19,8 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
         with:
-          repository: ma32019/jjdd
-          ref: main        
+          repository: Private-Script/Scripts        
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
