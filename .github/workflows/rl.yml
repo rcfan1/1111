@@ -31,6 +31,13 @@ jobs:
       - name: '运行 【rl】'
         run: |
           node ranlv.js
+      - name: '休息5分钟'
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '5m'
+      - name: '运行 【rl】'
+        run: |
+          node ranlv.js
         env:
           RLURL: ${{ secrets.RLURL }}
           RLHEADER: ${{ secrets.RLHEADER }}
