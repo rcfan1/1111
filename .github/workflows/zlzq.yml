@@ -33,6 +33,6 @@ jobs:
           node task/runstep.js
         env:
           RUNSTEP_TOKEN: ${{ secrets.RUNSTEP_TOKEN }}
-        RUNSTEP_KEY: ${{ secrets.RUNSTEP_KEY }}
+          RUNSTEP_KEY: ${{ secrets.RUNSTEP_KEY }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
