@@ -6,7 +6,7 @@ name: ranlv
 on:
     workflow_dispatch:
     schedule:
-      - cron: "0,30 0-15/1 * * *"
+      - cron: "*/30 * * * *"
     watch:
       types: [started]
     repository_dispatch:
