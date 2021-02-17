@@ -31,15 +31,6 @@ jobs:
       - name: '运行 【1】'
         run: |
           node task/runstep.js
-      - name: '运行 【2】'
-        run: |
-          node task/runstep.js
-      - name: '运行 【3】'
-        run: |
-          node task/runstep.js
-      - name: '运行 【4】'
-        run: |
-          node task/runstep.js
         env:
           RUNSTEP_TOKEN: ${{ secrets.RUNSTEP_TOKEN }}
           RUNSTEP_KEY: ${{ secrets.RUNSTEP_KEY }}
