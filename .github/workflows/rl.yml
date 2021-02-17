@@ -6,7 +6,7 @@ name: ranlv
 on:
     workflow_dispatch:
     schedule:
-      - cron: "0,30 0-15 * * *"
+      - cron: "0,30 0-11/1 * * *"
     watch:
       types: [started]
     repository_dispatch:
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: ZhiYi-N/Private-Script              
+          repository: ma32019/jjdd              
 
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
@@ -28,9 +28,12 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【rl】'
+      - name: '运行 【1】'
         run: |
-          node Scripts/ranlv.js
+          node ranlv.js
+      - name: '运行 【2】'
+        run: |
+          node ranlv.js
         env:
           RLURL: ${{ secrets.RLURL }}
           RLHEADER: ${{ secrets.RLHEADER }}
