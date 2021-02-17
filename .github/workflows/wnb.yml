@@ -1,26 +1,26 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
 name: wnb
 
-
 on:
-  workflow_dispatch:
-  schedule:
-     - cron: '7/30 0-14 * * *'
-  watch:
-    types: started
+    workflow_dispatch:
+    schedule:
+      - cron: "7/30 0-14 * * *"
+    watch:
+      types: [started]
+    repository_dispatch:
+      types: wnb
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
-    env:
-        WNB_HD: ${{ secrets.WNB_HD }}
-        WNB_BODY: ${{ secrets.WNB_BODY }}
-        TZ: Asia/shanghai
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
-          repository: allenqq1209/allen
-          ref: main
+          repository: allenqq1209/allen              
+
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -29,14 +29,10 @@ jobs:
         run: |
           npm install
       - name: '运行 【wnb】'
-        if: env.WNB_HD
         run: |
           node task/wnb.js
         env:
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}
-          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          WNB_HD: ${{ secrets.WNB_HD }}
+          WNB_BODY: ${{ secrets.WNB_BODY }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          BARK_SOUND: ${{ secrets.BARK_SOUND }}
-          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
