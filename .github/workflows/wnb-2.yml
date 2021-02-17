@@ -1,0 +1,38 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: wnb2
+
+on:
+    workflow_dispatch:
+    schedule:
+      - cron: "7/30 0-14 * * *"
+    watch:
+      types: [started]
+    repository_dispatch:
+      types: wnb2
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: allenqq1209/allen              
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: npm install
+        run: |
+          npm install
+      - name: '运行 【wnb】'
+        run: |
+          node task/wnb.js
+        env:
+          WNB_HD: ${{ secrets.WNB_HD2 }}
+          WNB_BODY: ${{ secrets.WNB_BODY2 }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
