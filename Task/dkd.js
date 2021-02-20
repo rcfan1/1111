@@ -614,7 +614,7 @@ function dkdtx(timeout = 0) {
        txval = 50
       }
      else {
-        txval = 5
+        txval = 1
      }
      if( bindwith == 1){
        txtd = 2  //vx
