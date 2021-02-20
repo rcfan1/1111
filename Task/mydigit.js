@@ -1,5 +1,5 @@
 /*
-更新时间: 2020-09-18 22:35 
+更新时间: 2020-09-18 22:35
 
 本脚本仅适用于数码之家每日签到
 获取Cookie方法:
@@ -101,7 +101,7 @@ function Idinfo() {
   return new Promise((resolve) => {
    signheaders = JSON.parse($.getdata($.KEY_sign)).headers
    userInfo = JSON.parse($.getdata($.KEY_sign)).headers.Referer
-   const url = { 
+   const url = {
        url:'https://www.mydigit.cn/plugin.php?id=k_misign:sign&mobile=2'
 ,
        headers: signheaders,
@@ -122,7 +122,7 @@ function Idinfo() {
 function Minfo() {
   return new Promise((resolve) => {
    cookieval = JSON.parse($.getdata($.KEY_sign)).headers.Cookie
-   const url = { 
+   const url = {
        url: `https://www.mydigit.cn/home.php?mod=spacecp&ac=credit&showcredit=1`,
        headers: {Cookie: cookieval},
 }
