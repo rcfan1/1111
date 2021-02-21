@@ -25,8 +25,8 @@ jobs:
       BARK_SOUND: ${{ secrets.BARK_SOUND }}
       DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
       DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
-      
-      
+
+
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
@@ -42,9 +42,9 @@ jobs:
           cd ~/Scripts
           npm install -g npm
           npm update
-                 
-      - name: '运行 【dkd】'
-        if: env.RLURL
+
+      - name: '运行 【ranlv燃旅】'
+        if: env.RLHEADER
         run: |
           cd ~/Scripts
           node Task/ranlv.js
@@ -52,6 +52,3 @@ jobs:
           RLURL: ${{ secrets.RLURL }}
           RLHEADER: ${{ secrets.RLHEADER }}
           RLBODY: ${{ secrets.RLBODY }}
-          
-
-

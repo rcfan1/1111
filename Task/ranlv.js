@@ -731,6 +731,7 @@ let new_access_token = access_token.replace(/access_token=/,'')
     	}
    $.post(lottery_url,async(error, response, data) =>{
     try{
+        $.log(data)
         const result = JSON.parse(data)
         if(logs) $.log(data)
         await sleep(Math.random()*30000)
