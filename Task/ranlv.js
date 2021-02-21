@@ -54,9 +54,10 @@ if (isGetCookie) {
    $.done()
 }
 if ($.isNode()) {
-   if (process.env.RLURL && process.env.RLURL.indexOf('#') > -1) {
-   rlurl = process.env.RLURL.split('#');
-   console.log(`您选择的是用"#"隔开\n`)
+
+  if (process.env.RLURL && process.env.RLURL.indexOf('#') > -1) {
+  rlurl = process.env.RLURL.split('#');
+  console.log(`您选择的是用"#"隔开\n`)
   }
   else if (process.env.RLURL && process.env.RLURL.indexOf('\n') > -1) {
    rlurl = process.env.RLURL.split('\n');
@@ -64,6 +65,12 @@ if ($.isNode()) {
   } else {
    rlurl = process.env.RLURL.split()
   };
+  Object.keys(rlurl).forEach((item) => {
+        if (rlurl[item]) {
+          rlurlArr.push(rlurl[item])
+        }
+    });
+
   if (process.env.RLHEADER && process.env.RLHEADER.indexOf('#') > -1) {
    rlheader = process.env.RLHEADER.split('#');
    console.log(`您选择的是用"#"隔开\n`)
@@ -74,6 +81,12 @@ if ($.isNode()) {
   } else {
    rlheader = process.env.RLHEADER.split()
   };
+  Object.keys(rlheader).forEach((item) => {
+        if (rlheader[item]) {
+          rlheaderArr.push(rlheader[item])
+        }
+    });
+
   if (process.env.RLBODY && process.env.RLBODY.indexOf('#') > -1) {
    rlbody = process.env.RLBODY.split('#');
    console.log(`您选择的是用"#"隔开\n`)
@@ -84,6 +97,12 @@ if ($.isNode()) {
   } else {
    rlbody = process.env.RLBODY.split()
   };
+  Object.keys(rlbody).forEach((item) => {
+        if (rlbody[item]) {
+          rlbodyArr.push(rlbody[item])
+        }
+    });
+
     console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
     console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
  } else {
