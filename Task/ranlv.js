@@ -237,9 +237,9 @@ let headers = rlheader.replace(/acw_tc=\w+/,'')
         console.log('🎈'+result.msg+' 邀请码：'+result.user.id+' 昵称：'+result.user.nickname+' 燃旅号：'+result.user.ranlvid +'\n')
         console.log('现有余额：'+result.user.balance + '提现额度：'+result.user.lines+'\n')
         if(cash > 0 && Number(result.user.balance) >= cash && Number(result.user.lines) >= Number(result.user.balance)){
-          if(Number(result.user.balance) < 10 ){cash = 10}
+          if(Number(result.user.balance) > 10 ){cash = 10}
           else if(Number(result.user.balance) > 3 ){cash = 3}
-          else{cash = 3}
+          else{cash = 1}
           await wallet()
         }
         message += '🎈'+result.msg+' 邀请码：'+result.user.id+' 昵称：'+result.user.nickname+' 燃旅号：'+result.user.ranlvid +'现有余额：'+result.user.balance + '提现额度：'+result.user.lines+'\n'
@@ -884,7 +884,7 @@ async function showmsg(){
 if(tz==1){
     $.log(message+note)
     if ($.isNode()){
-    if ((hour == 12 && minute <= 20) || (hour == 23 && minute >= 40)) {
+    if (hour == 16 && minute >= 25) {
        await notify.sendNotify($.name,message+note)
      }
    }else{
