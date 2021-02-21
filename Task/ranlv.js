@@ -495,7 +495,7 @@ async function wiTask(){
         await comment()
         }
         if(praiseArr.to_num >= praiseArr.num && commentArr.to_num >= commentArr.num && commentArr.to_num >= commentArr.num){
-        note += '提现任务已完成'
+        note += '提现状态获取成功'
         $.log(zhiyi,'',note)
         }
         }
@@ -827,6 +827,7 @@ let url = rlurl.replace(/&video_id=\d{5}/,``)
     	}
    $.post(wallet_url,async(error, response, data) =>{
     try{
+        $.log(`设置的金额为${cash}\n`)
         const result = JSON.parse(data)
         if(logs) $.log(data)
         if(result.code == 0){
