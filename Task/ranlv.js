@@ -36,7 +36,8 @@ let rlurl = $.getdata('rlurl')
 let rlheader = $.getdata('rlheader')
 let rlbody = $.getdata('rlbody')
 let tz = ($.getval('tz') || '1');//0关闭通知，1默认开启
-const invite=1;//新用户自动邀请，0关闭，1默认开启
+let cash = ($.getval('rlcash') || '1')//默认不自动提现
+const invite=0;//新用户自动邀请，0关闭，1默认开启
 const logs =0;//0为关闭日志，1为开启
 var hour=''
 var minute=''
@@ -129,7 +130,7 @@ if (!rlheaderArr[0]) {
       note =''
       rlurl = rlurlArr[i];
       rlheader = rlheaderArr[i];
-      //rlbody = rlbodyArr[i];
+      rlbody = rlbodyArr[i];
       $.index = i + 1;
       console.log(`\n开始【燃旅视频${$.index}】`)
       await checkVersion()
@@ -139,6 +140,7 @@ if (!rlheaderArr[0]) {
       await myVotes()
       await wiTask()
       await showmsg()
+
   }
  }
 })()
@@ -233,6 +235,9 @@ let headers = rlheader.replace(/acw_tc=\w+/,'')
         myid = result.user.id
         console.log('🎈'+result.msg+' 邀请码：'+result.user.id+' 昵称：'+result.user.nickname+' 燃旅号：'+result.user.ranlvid +'\n')
         console.log('现有余额：'+result.user.balance + '提现额度：'+result.user.lines+'\n')
+        if(cash > 0 && Number(result.user.balance) >= cash && Number(result.user.lines) >= Number(result.user.balance)){
+        await wallet()
+        }
         message += '🎈'+result.msg+' 邀请码：'+result.user.id+' 昵称：'+result.user.nickname+' 燃旅号：'+result.user.ranlvid +'现有余额：'+result.user.balance + '提现额度：'+result.user.lines+'\n'
         }else{
         console.log('👀我也不知道\n')
@@ -585,7 +590,6 @@ let new_access_token = access_token.replace(/access_token=/,'')
     	}
    $.post(myVotes_url,async(error, response, data) =>{
     try{
-        $.log(data)
         const result = JSON.parse(data)
         if(logs) $.log(data)
         if(result.code == 0){
@@ -732,10 +736,8 @@ let new_access_token = access_token.replace(/access_token=/,'')
     	}
    $.post(lottery_url,async(error, response, data) =>{
     try{
-        $.log(data)
         const result = JSON.parse(data)
-        if(logs)
-        $.log(data)
+        if(logs) $.log(data)
         await sleep(Math.random()*30000)
         if(result.code == 0){
 	   console.log('🎈'+result.msg+' '+result.data.name+'\n')
@@ -776,6 +778,76 @@ let url = rlurl.replace(/&video_id=\d{5}/,``)
         }else{
         console.log('👀'+result.msg+'\n')
         //message += '👀'+"我也不知道\n"
+        }
+        }catch(e) {
+          $.logErr(e, response);
+      } finally {
+        resolve();
+      }
+    })
+   })
+}
+//withdraw
+async function withdraw(){
+let url = rlurl.replace(/&video_id=\d{5}/,``)
+ return new Promise((resolve) => {
+    let withdraw_url = {
+   		url: `https://ranlv.lvfacn.com/api.php/Share/withdraw?&amount=${cash}&is_act=1&member_id=${myid}&${url}`,
+    	headers: JSON.parse(rlheader),
+    	}
+   $.post(withdraw_url,async(error, response, data) =>{
+    try{
+        const result = JSON.parse(data)
+        if(logs) $.log(data)
+        if(result.code == 0){
+        console.log(`成功提现${cash}元\n`)
+        message += `成功提现${cash}元\n`
+        }else{
+        console.log('👀'+result.msg+'\n')
+        }
+        }catch(e) {
+          $.logErr(e, response);
+      } finally {
+        resolve();
+      }
+    })
+   })
+}
+//wallet
+async function wallet(){
+let url = rlurl.replace(/&video_id=\d{5}/,``)
+ return new Promise((resolve) => {
+    let wallet_url = {
+   		url: `https://ranlv.lvfacn.com/api.php/Share/wallet?&&list_rows=1&page=1&type=2&member_id=${myid}&${url}`,
+    	headers: JSON.parse(rlheader),
+    	}
+   $.post(wallet_url,async(error, response, data) =>{
+    try{
+        const result = JSON.parse(data)
+        if(logs) $.log(data)
+        if(result.code == 0){
+        let hour,minute,second,year,month,day;
+year = (new Date()).getFullYear();
+month = (new Date()).getMonth() + 1;
+day = (new Date()).getDate();
+if (month >= 1 && month <= 9) {
+            month = "0" + month;
+    }
+if (day >= 0 && day <= 9) {
+            day = "0" + day;
+   }
+hour = (new Date()).getHours();
+minute = (new Date()).getMinutes();
+second = (new Date()).getSeconds();
+let now = Number(year+month+day+hour+minute+second)
+let cashArr = result.data.data.data.find(item => item.description === '提现')
+let create_time = Number(cashArr.serialnum.match(/\d{14}/))
+if(now - create_time >= 1000000){
+$.log(`设置的提现金额为${cash},开始提现\n`)
+await withdraw()
+}
+        }else{
+        console.log('👀'+result.msg+'\n')
         }
         }catch(e) {
           $.logErr(e, response);
