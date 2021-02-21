@@ -585,6 +585,7 @@ let new_access_token = access_token.replace(/access_token=/,'')
     	}
    $.post(myVotes_url,async(error, response, data) =>{
     try{
+        $.log(data)
         const result = JSON.parse(data)
         if(logs) $.log(data)
         if(result.code == 0){
@@ -733,7 +734,8 @@ let new_access_token = access_token.replace(/access_token=/,'')
     try{
         $.log(data)
         const result = JSON.parse(data)
-        if(logs) $.log(data)
+        if(logs)
+        $.log(data)
         await sleep(Math.random()*30000)
         if(result.code == 0){
 	   console.log('🎈'+result.msg+' '+result.data.name+'\n')
