@@ -48,6 +48,7 @@ if ($.isNode()) {
    hour = (new Date()).getHours();
    minute = (new Date()).getMinutes();
 }
+console.log(`现在时间为${hour}：${minute}\n`)
 //CK运行
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
@@ -236,7 +237,10 @@ let headers = rlheader.replace(/acw_tc=\w+/,'')
         console.log('🎈'+result.msg+' 邀请码：'+result.user.id+' 昵称：'+result.user.nickname+' 燃旅号：'+result.user.ranlvid +'\n')
         console.log('现有余额：'+result.user.balance + '提现额度：'+result.user.lines+'\n')
         if(cash > 0 && Number(result.user.balance) >= cash && Number(result.user.lines) >= Number(result.user.balance)){
-        await wallet()
+          if(Number(result.user.balance) < 10 ){cash = 10}
+          else if(Number(result.user.balance) > 3 ){cash = 3}
+          else{cash = 3}
+          await wallet()
         }
         message += '🎈'+result.msg+' 邀请码：'+result.user.id+' 昵称：'+result.user.nickname+' 燃旅号：'+result.user.ranlvid +'现有余额：'+result.user.balance + '提现额度：'+result.user.lines+'\n'
         }else{
