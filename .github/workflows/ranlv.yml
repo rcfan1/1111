@@ -9,8 +9,8 @@ on:
      - cron: '*/25 0-16 * * *'
   watch:
     types: started
-env:
-  TZ: Asia/Shanghai
+#env:
+  #TZ: Asia/Shanghai
 
 jobs:
   build:
