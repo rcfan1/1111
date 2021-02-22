@@ -247,7 +247,7 @@ else {
           await dkdsxzp()
           await dkdcj()
         }
-        if (hour >= 7 && hour <= 10 && txbody >= 5){
+        if (hour >= 7 && txbody >= 3){
           await dkdtxn()
           await dkdtx()
         }
@@ -610,11 +610,11 @@ function dkdtxn(timeout = 0) {
 function dkdtx(timeout = 0) {
   return new Promise((resolve) => {
     let str = dkdtxhd.match(/headerInfo":"\w+/)+''
-    if(txbody >= 50){
-       txval = 50
+    if(txbody >= 5){
+       txval = 5
       }
      else {
-        txval = 1
+        txval = 3
      }
      if( bindwith == 1){
        txtd = 2  //vx

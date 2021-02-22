@@ -141,6 +141,7 @@ const bodysArr = []
           console.log(`\n开始多看点第${$.index}次视频💦`)
         }
         await AutoRead();
+        await $.wait(6000);
       }
 
       await $.wait(130000);
