@@ -6,7 +6,7 @@ name: ranlv燃旅
 on:
   workflow_dispatch:
   schedule:
-     - cron: '30 0-16 * * *'
+     - cron: '*/25 0-16 * * *'
   watch:
     types: started
 env:
