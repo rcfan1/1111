@@ -165,7 +165,7 @@ let url = {
           $.logErr(err);
         } else {
 
-    const result = JSON.parse(data)
+    //const result = JSON.parse(data)
        console.log('\n番茄看看key提交成功,即将开始领取阅读奖励')
        await $.wait(18000);
         await fqkk3();
