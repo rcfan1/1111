@@ -15,10 +15,30 @@ env:
 jobs:
   build:
     env:
-      Dkdhd: ${{ secrets.Dkdhd }}
-      Dkdbody: ${{ secrets.Dkdbody }}
-      Dkdvd_body: ${{ secrets.Dkdvd_body }}
+      Dkdhd1: ${{ secrets.Dkdhd1 }}
+      Dkdbody1: ${{ secrets.Dkdbody1 }}
+      Dkdvd_body1: ${{ secrets.Dkdvd_body1 }}
+
+      Dkdhd2: ${{ secrets.Dkdhd2 }}
+      Dkdbody2: ${{ secrets.Dkdbody2 }}
       Dkdvd_body2: ${{ secrets.Dkdvd_body2 }}
+
+      Dkdhd3: ${{ secrets.Dkdhd3 }}
+      Dkdbody3: ${{ secrets.Dkdbody3 }}
+      Dkdvd_body3: ${{ secrets.Dkdvd_body3 }}
+
+      Dkdhd4: ${{ secrets.Dkdhd4 }}
+      Dkdbody4: ${{ secrets.Dkdbody4 }}
+      Dkdvd_body4: ${{ secrets.Dkdvd_body4 }}
+
+      Dkdhd5: ${{ secrets.Dkdhd5 }}
+      Dkdbody5: ${{ secrets.Dkdbody5 }}
+      Dkdvd_body5: ${{ secrets.Dkdvd_body5 }}
+
+      Dkdhd6: ${{ secrets.Dkdhd6 }}
+      Dkdbody6: ${{ secrets.Dkdbody6 }}
+      Dkdvd_body6: ${{ secrets.Dkdvd_body6 }}
+
       PUSH_KEY: ${{ secrets.PUSH_KEY }}
       BARK_PUSH: ${{ secrets.BARK_PUSH }}
       TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
@@ -26,8 +46,8 @@ jobs:
       BARK_SOUND: ${{ secrets.BARK_SOUND }}
       DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
       DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
-      
-      
+
+
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
@@ -43,27 +63,65 @@ jobs:
           cd ~/Scripts
           npm install -g npm
           npm update
-                 
-      - name: '运行 【dkd视频】'
-        if: env.Dkdvd_body         
+
+      - name: '运行 【dkd视频1】'
+        if: env.Dkdhd1
         run: |
           cd ~/Scripts
           node Task/dkdsp.js
         env:
-          Dkdhd: ${{ secrets.Dkdhd }}
-          Dkdbody: ${{ secrets.Dkdbody }}
-          Dkdvd_body: ${{ secrets.Dkdvd_body }}
-      
-  
+          Dkdhd: ${{ secrets.Dkdhd1 }}
+          Dkdbody: ${{ secrets.Dkdbody1 }}
+          Dkdvd_body: ${{ secrets.Dkdvd_body1 }}
+
+
       - name: '运行 【dkd视频2】'
-        if: env.Dkdvd_body2         
+        if: env.Dkdhd2
         run: |
           cd ~/Scripts
           node Task/dkdsp.js
         env:
-          Dkdhd: ${{ secrets.Dkdhd }}
-          Dkdbody: ${{ secrets.Dkdbody }}
+          Dkdhd: ${{ secrets.Dkdhd2 }}
+          Dkdbody: ${{ secrets.Dkdbody2 }}
           Dkdvd_body: ${{ secrets.Dkdvd_body2 }}
-          
 
 
+      - name: '运行 【dkd视频3】'
+        if: env.Dkdhd3
+        run: |
+          cd ~/Scripts
+          node Task/dkdsp.js
+        env:
+          Dkdhd: ${{ secrets.Dkdhd3 }}
+          Dkdbody: ${{ secrets.Dkdbody3 }}
+          Dkdvd_body: ${{ secrets.Dkdvd_body3 }}
+
+      - name: '运行 【dkd视频4】'
+        if: env.Dkdhd4
+        run: |
+          cd ~/Scripts
+          node Task/dkdsp.js
+        env:
+          Dkdhd: ${{ secrets.Dkdhd4 }}
+          Dkdbody: ${{ secrets.Dkdbody4 }}
+          Dkdvd_body: ${{ secrets.Dkdvd_body4 }}
+
+      - name: '运行 【dkd视频5】'
+        if: env.Dkdhd5
+        run: |
+          cd ~/Scripts
+          node Task/dkdsp.js
+        env:
+          Dkdhd: ${{ secrets.Dkdhd5 }}
+          Dkdbody: ${{ secrets.Dkdbody5 }}
+          Dkdvd_body: ${{ secrets.Dkdvd_body5 }}
+
+      - name: '运行 【dkd视频6】'
+        if: env.Dkdhd6
+        run: |
+          cd ~/Scripts
+          node Task/dkdsp.js
+        env:
+          Dkdhd: ${{ secrets.Dkdhd6 }}
+          Dkdbody: ${{ secrets.Dkdbody6 }}
+          Dkdvd_body: ${{ secrets.Dkdvd_body6 }}
