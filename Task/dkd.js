@@ -247,7 +247,7 @@ else {
           await dkdsxzp()
           await dkdcj()
         }
-        if (hour >= 7 && txbody >= 3){
+        if (hour >= 7 && hour <= 10 && txbody >= 3){
           await dkdtxn()
           await dkdtx()
         }
