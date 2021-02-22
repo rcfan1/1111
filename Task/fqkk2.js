@@ -167,7 +167,7 @@ let url = {
 
     const result = JSON.parse(data)
        console.log('\n番茄看看key提交成功,即将开始领取阅读奖励')
-       await $.wait(8000);
+       await $.wait(18000);
         await fqkk3();
         }} catch (e) {
           //$.logErr(e, resp);

@@ -207,7 +207,7 @@ let url = {
 
     const result = JSON.parse(data)
        console.log('\n番茄看看key提交成功,即将开始领取阅读奖励')
-       await $.wait(8000);
+       await $.wait(12000);
         await fqkk3();
         }} catch (e) {
           //$.logErr(e, resp);
@@ -240,7 +240,7 @@ let url = {
         console.log('\n番茄看看获取key回执:成功🌝 ')
         fqkey = result.data.jkey
         console.log(fqkey)
-        await $.wait(2000);
+        await $.wait(5000);
         await fqkk2()
 }
 if(result.code !== 0){
