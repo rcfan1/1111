@@ -301,8 +301,8 @@ $.log(dkdtxbody)
              cash = result.data.cash
              today_gold = result.data.today_gold
              console.log('\n\n'+$.name+'运行开始！',"",'用户信息回执:成功🌝\n'+'用户名: 666'+result.data.nickname+'\n当前余额:'+result.data.cash+'\n总金币:'+result.data.gold+'\n今日金币:'+result.data.today_gold)
-             if (hour >= 23 ){
-               notify.sendNotify(`${$.name}-账号${$.index}-{$.nickname}今日收益${today_gold}` , `账号${$.index} - ${$.nickname} \n您的余额约${cash}元，今日收益${today_gold}`)
+             if (hour >= 22 ){
+               notify.sendNotify(`${$.name}-账号${$.index}-${nickname}今日收益${today_gold}` , `账号${$.index} - ${nickname} \n您的余额约${cash}元，今日收益${today_gold}`)
                }
             }
           //console.log("txbody为",txbody)
@@ -635,7 +635,7 @@ function dkdtx(timeout = 0) {
       const result = JSON.parse(data)
       if(result.status_code == 200){
       console.log('提现回执:成功🌝 '+result.message)
-      notify.sendNotify(`${$.name} - 账号${$.index} - {$.nickname}已提现${txval}元` , `【提醒⏰】账号${$.index} - {$.nickname} \n您的余额约${cash}元，已提现${txval}元，通道为${td}`)
+      notify.sendNotify(`${$.name} - 账号${$.index} - ${nickname}已提现${txval}元` , `【提醒⏰】账号${$.index} - ${nickname} \n您的余额约${cash}元，已提现${txval}元，通道为${td}`)
       }
       if(result.status_code == 10020){
               console.log('提现回执:失败🚫 '+result.message)}
