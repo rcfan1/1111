@@ -72,9 +72,7 @@ let fqtx = ($.getval('fqtx') || '100');  // 此处修改提现金额，0.1元等
 var zz = ''
 
 
-  if (typeof $request !== "undefined") {
-    await fqkkck()
-  }
+
 
 if ($.isNode()) {
 
@@ -121,7 +119,9 @@ else {
 }
 
 !(async () => {
-
+    if (typeof $request !== "undefined") {
+      await fqkkck()
+    }
     console.log(`------------- 共${fqkkhdArr.length}个账号-------------\n`)
       for (let i = 0; i < fqkkhdArr.length; i++) {
         if (fqkkhdArr[i]) {

@@ -67,7 +67,7 @@ const fqkkurlArr = [], fqkkhdArr = [],fqkkbodyArr = [],fqkkcount = ''
 let fqkkurl = $.getdata('fqkkurl')
 let fqkkhd = $.getdata('fqkkhd')
 let fqkey = ''
-let fqkkxh = ($.getval('fqkkxh') || '25');  // 此处修改循环次数，默认一百
+let fqkkxh = 5;  // 此处修改循环次数，默认一百
 let fqtx = ($.getval('fqtx') || '100');  // 此处修改提现金额，0.1元等于10，默认为提现一元，也就是100
 var zz = ''
 !(async () => {
@@ -90,14 +90,14 @@ var zz = ''
           $.index = i + 1;
           console.log(`\n开始【番茄看看${$.index}】`)
           for (let x = 0; x < fqkkxh; x++) {
-      $.index = x + 1
-      console.log(`\n番茄看看开始执行第${x+1}次阅读任务！💦\n`)
-    await fqkk1();
-if(zz==1){
-$.msg("","",'番茄看看任务异常，请查看脚本运行日志查看情况!')
-break;
-}
-  }
+            $.index = x + 1
+            console.log(`\n番茄看看开始执行第${x+1}次阅读任务！💦\n`)
+            await fqkk1();
+            if(zz==1){
+            $.msg("","",'番茄看看任务异常，请查看脚本运行日志查看情况!')
+            break;
+          }
+        }
   await fqkktx();
 }}}
 })()
@@ -126,6 +126,7 @@ let url = {
         headers : JSON.parse(fqkkhd),
         body : 'readLastKey='+fqkey,}
       $.post(url, async (err, resp, data) => {
+        console.log('data3'+data)
         try {
 
     const result = JSON.parse(data)
@@ -156,6 +157,7 @@ let url = {
 
 }
       $.post(url, async (err, resp, data) => {
+        console.log('data2'+data)
         try {
         if (err) {
           console.log("⛔️API查询请求失败❌ ‼️‼️");
@@ -194,17 +196,19 @@ let url = {
         try {
 
     const result = JSON.parse(data)
+    console.log('data1'+data)
         if(result.code == 0){
         console.log('\n番茄看看获取key回执:成功🌝 ')
         fqkey = result.data.jkey
         console.log(fqkey)
-        await $.wait(2000);
+        await $.wait(3000);
         await fqkk2()
-}
-if(result.code !== 0){
-console.log('番茄看看获取key回执:失败🚫 '+result.msg)
+        }
 
-}
+        if(result.code !== 0){
+        console.log('番茄看看获取key回执:失败🚫 '+result.msg)
+
+        }
         } catch (e) {
           //$.logErr(e, resp);
         } finally {
