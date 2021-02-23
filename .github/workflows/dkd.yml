@@ -6,7 +6,7 @@ name: dkd多看点
 on:
   workflow_dispatch:
   schedule:
-     - cron: '30 0-16/2 * * *'
+     - cron: '35 0-16 * * *'
   watch:
     types: started
 #env:
