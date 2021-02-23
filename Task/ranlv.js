@@ -806,6 +806,7 @@ let url = rlurl.replace(/&video_id=\d{5}/,``)
         if(result.code == 0){
         console.log(`成功提现${cash}元\n`)
         message += `成功提现${cash}元\n`
+        icash = 1
         }else{
         console.log('👀'+result.msg+'\n')
         }
@@ -884,9 +885,12 @@ async function showmsg(){
 if(tz==1){
     $.log(message+note)
     if ($.isNode()){
-    if (hour == 16 && minute >= 25) {
+    if (hour == 23) {
        await notify.sendNotify($.name,message+note)
      }
+    if (icash){
+      await notify.sendNotify('@提现啦@'+$.name,message+note)
+    }
    }else{
      $.log(message+note)
     //if ((hour == 12 && minute <= 20) || (hour == 23 && minute >= 40)) {
