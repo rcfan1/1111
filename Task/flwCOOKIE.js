@@ -7,6 +7,12 @@ let flwspbodyVal= ``
 let flwqwbodyVal= ``
 let flwydbodyVal= ``
 
+flwurlVal = process.env.FL_flwURL;
+flwheaderVal = process.env.FL_flwHEADER;
+flwspbodyVal = process.env.FL_flwspBODY;
+flwqwbodyVal = process.env.FL_flwqwBODY;
+flwydbodyVal = process.env.FL_flwydBODY;
+/*
 if (
   process.env.FL_flwURL &&
   process.env.FL_flwURL.indexOf('\n') > -1
@@ -45,12 +51,13 @@ if (
 ) {
   flwydbodyVal = process.env.FL_flwydBODY.split('\n');
 }
+*/
 
 let flwcookie = {
   flwurlVal: flwurlVal,
   flwheaderVal: flwheaderVal,
   flwspbodyVal: flwspbodyVal,
-  flwqwbodyVal: flwqwbodyVal, 
+  flwqwbodyVal: flwqwbodyVal,
   flwydbodyVal: flwydbodyVal,
 
 }
