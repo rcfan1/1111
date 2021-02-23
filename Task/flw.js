@@ -101,13 +101,13 @@ let middleflwHEADER = [];
 let middleflwspBODY = [];
 let middleflwqwBODY = [];
 let middleflwydBODY = [];
+
 // 没有设置 FL_CASH 则默认为 0 不提现
 if ($.isNode()) {
   CASH = process.env.FL_CASH || 0;
   // 没有设置 FL_DHCASH 则默认为 0 不兑换
   DHCASH = process.env.FL_DHCASH || 0;
-}
-if ($.isNode()) {
+
   if (
     process.env.FL_flwURL &&
     process.env.FL_flwURL.indexOf('\n') > -1
@@ -145,90 +145,40 @@ if ($.isNode()) {
     process.env.FL_flwydBODY.indexOf('\n') > -1
   ) {
     middleflwydBODY = process.env.FL_flwydBODY.split('\n');
-  } else {
-    middleflwydBODY = process.env.FL_flwydBODY.split();
   }
+  Object.keys(middleflwURL).forEach((item) => {
+    if (middleflwURL[item]) {
+      flwurlArr.push(middleflwURL[item]);
+    }
+  });
+  Object.keys(middleflwHEADER).forEach((item) => {
+    if (middleflwHEADER[item]) {
+      flwheaderArr.push(middleflwHEADER[item]);
+    }
+  });
+  Object.keys(middleflwspBODY).forEach((item) => {
+    if (middleflwspBODY[item]) {
+      flwspbodyArr.push(middleflwspBODY[item]);
+    }
+  });
+  Object.keys(middleflwqwBODY).forEach((item) => {
+    if (middleflwqwBODY[item]) {
+      flwqwbodyArr.push(middleflwqwBODY[item]);
+    }
+  });
+  Object.keys(middleflwydBODY).forEach((item) => {
+    if (middleflwydBODY[item]) {
+      flwydbodyArr.push(middleflwydBODY[item]);
+    }
+  });
+
+} else {
   flwurlArr.push($.getdata("flwurl"));
   flwheaderArr.push($.getdata("flwheader"));
   flwspbodyArr.push($.getdata("flwspbody"));
   flwqwbodyArr.push($.getdata("flwqwbody"));
   flwydbodyArr.push($.getdata("flwydbody"));
-  // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
-  if ("flwCASH") {
-    CASH = $.getval("flwCASH") || '0';
-  }
-  if ("flwDHCASH") {
-    DHCASH = $.getval("flwDHCASH") || '0';
-  }
 
-
-}
-if (COOKIE.flwurlVal) {
-  FL_COOKIES = {
-    "flwurlVal": COOKIE.flwurlVal.split('\n'),
-    "flwheaderVal": COOKIE.flwheaderVal.split('\n'),
-    "flwspbodyVal": COOKIE.flwspbodyVal.split('\n'),
-    "flwqwbodyVal": COOKIE.flwqwbodyVal.split('\n'),
-	"flwydbodyVal": COOKIE.flwydbodyVal.split('\n'),
-  }
-  Length = FL_COOKIES.flwurlVal.length;
-}
-
-if (!COOKIE.flwurlVal) {
-  if ($.isNode()) {
-    Object.keys(middleflwURL).forEach((item) => {
-      if (middleflwURL[item]) {
-        flwurlArr.push(middleflwURL[item]);
-      }
-    });
-    Object.keys(middleflwHEADER).forEach((item) => {
-      if (middleflwHEADER[item]) {
-        flwheaderArr.push(middleflwHEADER[item]);
-      }
-    });
-    Object.keys(middleflwspBODY).forEach((item) => {
-      if (middleflwspBODY[item]) {
-        flwspbodyArr.push(middleflwspBODY[item]);
-      }
-    });
-    Object.keys(middleflwqwBODY).forEach((item) => {
-      if (middleflwqwBODY[item]) {
-        flwqwbodyArr.push(middleflwqwBODY[item]);
-      }
-    });
-	Object.keys(middleflwydBODY).forEach((item) => {
-      if (middleflwydBODY[item]) {
-        flwydbodyArr.push(middleflwydBODY[item]);
-      }
-    });
-
-  } else {
-    flwurlArr.push($.getdata("flwurl"));
-    flwheaderArr.push($.getdata("flwheader"));
-    flwspbodyArr.push($.getdata("flwspbody"));
-    flwqwbodyArr.push($.getdata("flwqwbody"));
-    flwydbodyArr.push($.getdata("flwydbody"));
-    // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
-    if ("flwCASH") {
-      CASH = $.getval("flwCASH") || '0';
-    }
-    if ("flwDHCASH") {
-      DHCASH = $.getval("flwDHCASH") || '0';
-    }
-    let flwCount = ($.getval('flwCount') || '1') - 0;
-    for (let i = 2; i <= flwCount; i++) {
-      if ($.getdata(`flwurl${i}`)) {
-        flwurlArr.push($.getdata(`flwurl${i}`));
-        flwheaderArr.push($.getdata(`flwheader${i}`));
-        flwspbodyArr.push($.getdata(`flwspbody${i}`));
-        flwqwbodyArr.push($.getdata(`flwqwbody${i}`));
-		flwydbodyArr.push($.getdata(`flwydbody${i}`));
-      }
-    }
-  }
-  if(flwurlArr==''){
-    Length =0
-      }else Length = flwurlArr.length
 }
 
 
@@ -296,6 +246,8 @@ function GetCookie() {
     }
 
 }
+
+
 console.log(
   `================== 脚本执行 - 北京时间(UTC+8)：${new Date(
     new Date().getTime() +
@@ -377,6 +329,8 @@ if (isGetCookie) {
       $.done();
     })
 }
+
+
 async function all() {
   if (!Length) {
     $.msg(

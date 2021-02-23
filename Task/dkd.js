@@ -610,7 +610,16 @@ function dkdtxn(timeout = 0) {
 function dkdtx(timeout = 0) {
   return new Promise((resolve) => {
     let str = dkdtxhd.match(/headerInfo":"\w+/)+''
-    if(txbody >= 5){
+    if(txbody >= 50){
+       txval = 50
+      }
+    else if(txbody >= 15){
+       txval = 15
+      }
+    else if(txbody >= 10){
+       txval = 10
+      }
+    else if(txbody >= 5){
        txval = 5
       }
      else {
