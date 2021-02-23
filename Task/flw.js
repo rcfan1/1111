@@ -79,7 +79,6 @@ http-request https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fan
 const $ = Env("返利网");
 $.idx = ($.idx = ($.getval('flwSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
-const COOKIE = $.isNode() ? require("./flwCOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 1; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知
@@ -108,52 +107,58 @@ if ($.isNode()) {
   // 没有设置 FL_DHCASH 则默认为 0 不兑换
   DHCASH = process.env.FL_DHCASH || 0;
 }
-if ($.isNode() && process.env.FL_flwURL) {
-  COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
-  console.log(
-    `============ cookies分隔符为：${JSON.stringify(
-      COOKIES_SPLIT
-    )} =============\n`
-  );
+if ($.isNode()) {
   if (
     process.env.FL_flwURL &&
-    process.env.FL_flwURL.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwURL.indexOf('\n') > -1
   ) {
-    middleflwURL = process.env.FL_flwURL.split(COOKIES_SPLIT);
+    middleflwURL = process.env.FL_flwURL.split('\n');
   } else {
     middleflwURL = process.env.FL_flwURL.split();
   }
   if (
     process.env.FL_flwHEADER &&
-    process.env.FL_flwHEADER.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwHEADER.indexOf('\n') > -1
   ) {
-    middleflwHEADER = process.env.FL_flwHEADER.split(COOKIES_SPLIT);
+    middleflwHEADER = process.env.FL_flwHEADER.split('\n');
   } else {
     middleflwHEADER = process.env.FL_flwHEADER.split();
   }
   if (
     process.env.FL_flwspBODY &&
-    process.env.FL_flwspBODY.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwspBODY.indexOf('\n') > -1
   ) {
-    middleflwspBODY = process.env.FL_flwspBODY.split(COOKIES_SPLIT);
+    middleflwspBODY = process.env.FL_flwspBODY.split('\n');
   } else {
     middleflwspBODY = process.env.FL_flwspBODY.split();
   }
   if (
     process.env.FL_flwqwBODY &&
-    process.env.FL_flwqwBODY.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwqwBODY.indexOf('\n') > -1
   ) {
-    middleflwqwBODY = process.env.FL_flwqwBODY.split(COOKIES_SPLIT);
+    middleflwqwBODY = process.env.FL_flwqwBODY.split('\n');
   } else {
     middleflwqwBODY = process.env.FL_flwqwBODY.split();
   }
   if (
     process.env.FL_flwydBODY &&
-    process.env.FL_flwydBODY.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwydBODY.indexOf('\n') > -1
   ) {
-    middleflwydBODY = process.env.FL_flwydBODY.split(COOKIES_SPLIT);
+    middleflwydBODY = process.env.FL_flwydBODY.split('\n');
   } else {
     middleflwydBODY = process.env.FL_flwydBODY.split();
+  }
+  flwurlArr.push($.getdata("flwurl"));
+  flwheaderArr.push($.getdata("flwheader"));
+  flwspbodyArr.push($.getdata("flwspbody"));
+  flwqwbodyArr.push($.getdata("flwqwbody"));
+  flwydbodyArr.push($.getdata("flwydbody"));
+  // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
+  if ("flwCASH") {
+    CASH = $.getval("flwCASH") || '0';
+  }
+  if ("flwDHCASH") {
+    DHCASH = $.getval("flwDHCASH") || '0';
   }
 
 
@@ -168,6 +173,7 @@ if (COOKIE.flwurlVal) {
   }
   Length = FL_COOKIES.flwurlVal.length;
 }
+
 if (!COOKIE.flwurlVal) {
   if ($.isNode()) {
     Object.keys(middleflwURL).forEach((item) => {
