@@ -133,9 +133,9 @@ else {
           console.log(`\n开始【番茄看看${$.index}】`)
     await fqkk1();
 
+    }
+    await fqkktx();
   }
-  await fqkktx();
-}}
 
 })()
   .catch((e) => $.logErr(e))
