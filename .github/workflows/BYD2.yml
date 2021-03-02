@@ -16,11 +16,9 @@ on:
 jobs:
   build:
     env:
-      BYD_CK1: ${{ secrets.BYD_CK6 }}
-      BYD_CK2: ${{ secrets.BYD_CK7 }}
-      BYD_CK3: ${{ secrets.BYD_CK8 }}
-      BYD_CK4: ${{ secrets.BYD_CK9 }}
-      BYD_CK5: ${{ secrets.BYD_CK10 }}
+      BYD_CK1: ${{ secrets.BYD_CK4 }}
+      BYD_CK2: ${{ secrets.BYD_CK5 }}
+      BYD_CK3: ${{ secrets.BYD_CK6 }} 
       PUSH_KEY: ${{ secrets.PUSH_KEY }}
       BARK_PUSH: ${{ secrets.BARK_PUSH }}
       TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
@@ -46,26 +44,26 @@ jobs:
           npm install -g npm
           npm update
 
+      - name: '运行 【BYD4】'
+        if: env.BYD_CK4
+        run: |
+          cd ~/Scripts
+          node Task/BYD.js
+        env:
+          BYD_CK: ${{ secrets.BYD_CK4 }}
+
+      - name: '运行 【BYD5】'
+        if: env.BYD_CK5
+        run: |
+          cd ~/Scripts
+          node Task/BYD.js
+        env:
+          BYD_CK: ${{ secrets.BYD_CK5 }}
+
       - name: '运行 【BYD6】'
-        if: env.BYD_CK1
+        if: env.BYD_CK6
         run: |
           cd ~/Scripts
           node Task/BYD.js
         env:
           BYD_CK: ${{ secrets.BYD_CK6 }}
-
-      - name: '运行 【BYD7】'
-        if: env.BYD_CK2
-        run: |
-          cd ~/Scripts
-          node Task/BYD.js
-        env:
-          BYD_CK: ${{ secrets.BYD_CK7 }}
-
-      - name: '运行 【BYD8】'
-        if: env.BYD_CK3
-        run: |
-          cd ~/Scripts
-          node Task/BYD.js
-        env:
-          BYD_CK: ${{ secrets.BYD_CK8 }}
