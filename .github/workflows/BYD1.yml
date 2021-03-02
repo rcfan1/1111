@@ -18,9 +18,7 @@ jobs:
     env:
       BYD_CK1: ${{ secrets.BYD_CK1 }}
       BYD_CK2: ${{ secrets.BYD_CK2 }}
-      BYD_CK3: ${{ secrets.BYD_CK3 }}
-      BYD_CK4: ${{ secrets.BYD_CK4 }}
-      BYD_CK5: ${{ secrets.BYD_CK5 }}
+      BYD_CK3: ${{ secrets.BYD_CK3 }}   
       PUSH_KEY: ${{ secrets.PUSH_KEY }}
       BARK_PUSH: ${{ secrets.BARK_PUSH }}
       TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
