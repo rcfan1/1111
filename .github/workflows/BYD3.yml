@@ -16,11 +16,11 @@ on:
 jobs:
   build:
     env:
-      BYD_CK1: ${{ secrets.BYD_CK7 }}
-      BYD_CK2: ${{ secrets.BYD_CK8 }}
-      BYD_CK3: ${{ secrets.BYD_CK9 }}
-      BYD_CK4: ${{ secrets.BYD_CK10 }}
-      BYD_CK5: ${{ secrets.BYD_CK11 }}
+      BYD_CK7: ${{ secrets.BYD_CK7 }}
+      BYD_CK8: ${{ secrets.BYD_CK8 }}
+      BYD_CK9: ${{ secrets.BYD_CK9 }}
+      BYD_CK10: ${{ secrets.BYD_CK10 }}
+      BYD_CK11: ${{ secrets.BYD_CK11 }}
       PUSH_KEY: ${{ secrets.PUSH_KEY }}
       BARK_PUSH: ${{ secrets.BARK_PUSH }}
       TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
