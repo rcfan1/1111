@@ -1,41 +1,43 @@
-name: 全民悦动
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: qmyd@ziye3
 
 on:
-  workflow_dispatch:
-  schedule:
-     - cron: '0,30 0-23 * * *'
-  watch:
-    types: started
+    workflow_dispatch:
+    schedule:
+      - cron: "0,30 0-16,22,23 * * *"
+    watch:
+      types: [started]
+    repository_dispatch:
+      types: qmyd
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
-    env:
-        QMYD_qmydTOKEN: ${{ secrets. QMYD_qmydTOKEN }}
-        QMYD_CASH: ${{ secrets.QMYD_CASH }}		
-        
     steps:
       - name: Checkout
-        run: |
-          git clone https://github.com/lh44575858/....git〜/ ...
+        uses: actions/checkout@v2
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
       - name: npm install
         run: |
-          cd ~/...
           npm install
       - name: '运行 【全民悦动】'
         run: |
-          cd ~/...
           node Task/qmyd.js
         env:
-          
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          BARK_SOUND: ${{ secrets.BARK_SOUND }}
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+          QQREAD_CASH: ${{ secrets.QQREAD_CASH }}
+
+
+
+
