@@ -28,7 +28,7 @@ jobs:
       - name: '运行 【全民悦动】'
         if: env. QMYD_qmydTOKEN
         run: |
-          node Task/qmyd/qmyd.js
+          node Task/qmyd.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
