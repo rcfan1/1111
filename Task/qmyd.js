@@ -1,4 +1,4 @@
-/* ziye 
+/* ziye
 github地址 https://github.com/ziye11
 TG频道地址  https://t.me/ziyescript
 TG交流群   https://t.me/joinchat/AAAAAE7XHm-q1-7Np-tF3g
@@ -10,19 +10,20 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 点击  http://qmyd.yichengw.cn/?id=115796 下载APP 谢谢支持
 
 3.3 制作
+3.4 优化提现，优化刮刮卡，优化抽手机
 
-⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
+⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行
 
 
-一  默认20点睡7点醒，时间务必包括这两个点 
+一  默认20点睡7点醒，时间务必包括这两个点
 (已内置随机udid，添加重写无视多设备检测，如非必要，勿频繁登录)
 
-⚠️一共1个位置 1个ck  👉 2条 Secrets 
+⚠️一共1个位置 1个ck  👉 2条 Secrets
 
 多账号换行
 第一步 添加  hostname=qmyd.yichengw.cn,
 
-第二步 ⚠️添加全民悦动获取TOKEN重写  
+第二步 ⚠️添加全民悦动获取TOKEN重写
 
 登录全民悦动  获取token
 
@@ -47,19 +48,22 @@ http-response https:\/\/qmyd\.yichengw\.cn\/* script-path=https://raw.githubuser
 */
 const $ = Env("全民悦动");
 $.idx = ($.idx = ($.getval('qmydSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
-const notify = $.isNode() ? require("../sendNotify") : ``;
-const COOKIE = $.isNode() ? require("./qmydCOOKIE") : ``;
+const notify = $.isNode() ? require("./sendNotify") : ``;
+const COOKIE = $.isNode() ? require("./18qmydCOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
-const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
+const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知
 $.message = '', COOKIES_SPLIT = '', CASH = '', ddtime = '';
 CZ = 10
+
+let max = 50;
+let min = 30;
 const qmydtokenArr = [];
 let qmydtokenVal = ``;
 let middleqmydTOKEN = [];
 if ($.isNode()) {
     // 没有设置 QMYD_CASH 则默认为 0 不兑换
-    CASH = process.env.QMYD_CASH || 0;
+    CASH = process.env.QMYD_CASH || 888;
 }
 if ($.isNode() && process.env.QMYD_qmydTOKEN) {
     COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
@@ -418,14 +422,23 @@ function home(timeout = 0) {
                             $.message += `【红包等待】：${$.home.xuanfu_time}秒\n`;
                         }
                         if ((!$.home.xuanfu_time || $.home.xuanfu_time <= 0) && $.home.xuanfu_st != 2) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await xuanfu() //首页红包
                         }
                         if ($.home.lucky_jinbi != 0) {
                             lucky_pos = 1
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await luckycoins() //首页金币1
                         }
                         if ($.home.lucky_jinbi2 != 0) {
                             lucky_pos = 2
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await luckycoins() //首页金币2
                         }
                         if ($.home.xuanfu_st == 2) {
@@ -433,9 +446,15 @@ function home(timeout = 0) {
                             $.message += `【首页红包】：已完成\n`;
                         }
                         if ($.home.steps_btn_st == 1) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await donejin() //步数奖励
                         }
                         if ($.home.jinbi > 0) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             collsteps() //步数金币
                         }
                     }
@@ -599,6 +618,9 @@ function luckycoins(timeout = 0) {
                     tid = 16
                     pos = 1
                     nonce_str = $.luckycoins.nonce_str
+                    random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                    console.log(random);
+                    await $.wait(random);
                     await index()
                 } catch (e) {
                     $.logErr(e, resp);
@@ -625,6 +647,9 @@ function pophongbaoyu(timeout = 0) {
                         console.log(`红包雨：剩余${$.pophongbaoyu.hongbaoyu_count}次\n`);
                         $.message += `【红包雨】：剩余${$.pophongbaoyu.hongbaoyu_count}次\n`;
                         if ($.pophongbaoyu.hongbaoyu_count != 0) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await hongbaoyu() //红包雨
                         }
                     }
@@ -685,6 +710,9 @@ function help_index(timeout = 0) {
                         $.message += `【助力活动】：现金${$.help_index.jinbi}元,差${$.help_index.diff_jinbi}元,时间剩余${($.help_index.time/3600).toFixed(0)}小时\n`;
                         nonce_str = $.help_index.nonce_str
                         if ($.help_index.diff_jinbi > 0 && $.help_index.btn_st == 0) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await help_click()
                         } else {
                             console.log(`视频助力：今日已达到上限\n`);
@@ -705,6 +733,9 @@ function help_click(timeout = 0) {
     return new Promise(async (resolve) => {
         mini_pos = 5
         c_type = 0
+        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+        console.log(random);
+        await $.wait(random);
         await chuansj()
         setTimeout(() => {
             let url = {
@@ -721,6 +752,9 @@ function help_click(timeout = 0) {
                         $.message += `【视频助力】：${$.help_click.jinbi/10000}元,领取成功\n`;
                         tid = 15
                         pos = 1
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await index()
                     }
                 } catch (e) {
@@ -781,21 +815,33 @@ function zhuan_index(timeout = 0) {
                         ccys = $.zhuan_index.renwu.find(item => item.type === 12);
                         bss = $.zhuan_index.renwu.find(item => item.type === 13);
                         rwrw = $.zhuan_index.renwu.find(item => item.st === 1);
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await $.wait(1000)
 
                         console.log(`看视频赚金币：${sps.text}${sps.jinbi}金币\n点广告赚金币：${dggs.text}${dggs.jinbi}金币\n${dks.title}：${dks.text}${dks.jinbi}金币\n${hss.title}：${hss.text}${hss.jinbi}金币\n${cjs.title}：${cjs.text}${cjs.jinbi}金币\n${csjs.title}：${csjs.text}${csjs.jinbi}金币\n${ggks.title}：${ggks.text}${ggks.jinbi}金币\n${ccys.title}：${ccys.text}${ccys.jinbi}金币\n${bss.title}：${bss.text}${bss.jinbi}金币\n`)
                         $.message += `【看视频赚金币】：${sps.text}${sps.jinbi}金币\n【点广告赚金币】：${dggs.text}${dggs.jinbi}金币\n【${dks.title}】：${dks.text}${dks.jinbi}金币\n【${hss.title}】：${hss.text}${hss.jinbi}金币\n【${cjs.title}】：${cjs.text}${cjs.jinbi}金币\n【${csjs.title}】：${csjs.text}${csjs.jinbi}金币\n【${ggks.title}】：${ggks.text}${ggks.jinbi}金币\n【${ccys.title}】：${ccys.text}${ccys.jinbi}金币\n【${bss.title}】：${bss.text}${bss.jinbi}金币\n`
 
                         if (sps.st == 0) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await ssp() //视频任务
                         }
                         if (dggs.st == 0) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await admobile_show() //广告任务
                         }
                         if ($.zhuan_index.is_sign_day == 1) {
                             console.log(`每日签到：已完成\n`)
                             $.message += `【每日签到】：已完成\n`;
                         } else {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await signget() //签到
                         }
 
@@ -808,9 +854,15 @@ function zhuan_index(timeout = 0) {
                             $.message += `【宝箱时间】：${$.zhuan_index.box_time}秒\n`;
                         }
                         if ($.zhuan_index.jindan_st == 0) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await jindan_click() //金蛋
                         }
                         if ($.zhuan_index.box_st == 0) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await box_click() //宝箱
                         }
                         if ($.zhuan_index.jindan_st == 2) {
@@ -825,6 +877,9 @@ function zhuan_index(timeout = 0) {
                         if (rwrw && rwrw.jinbi && dggs.st == 2) {
                             taskid = rwrw.type
                             taskjinbi = rwrw.jinbi
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await zhuan_done()
                         }
                     }
@@ -845,7 +900,13 @@ async function ssp() {
     mini_pos = 0
     tid = 14
     pos = 1
+    random = Math.floor(Math.random()*(max-min+1)+min)*1000
+    console.log(random);
+    await $.wait(random);
     await chuansj()
+    random = Math.floor(Math.random()*(max-min+1)+min)*1000
+    console.log(random);
+    await $.wait(random);
     await index()
 }
 //激活广告
@@ -861,6 +922,9 @@ function admobile_show(timeout = 0) {
                     if (logs) $.log(`${O}, 激活广告🚩: ${data}`);
                     $.admobile_show = JSON.parse(data);
                     if ($.admobile_show.code == 200) {
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
 
                         await admobile_click() //点击广告
                     }
@@ -888,6 +952,9 @@ function admobile_click(timeout = 0) {
                     if ($.admobile_click.code == 200) {
                         ad_id = $.admobile_click.ad_id
                         nonce_str = $.admobile_click.nonce_str
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await admobile_done() //广告奖励
                     }
                 } catch (e) {
@@ -942,6 +1009,9 @@ function dk_info(timeout = 0) {
                         console.log(`早晚打卡页：${$.dk_info.day},${$.dk_info.title1}\n`);
                         $.message += `【早晚打卡页】：${$.dk_info.day},${$.dk_info.title1}\n`;
                         if ($.dk_info.is_dk == 0) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await dk_click() //早晚打卡
                         }
                         if ($.dk_info.is_dk == 1) {
@@ -977,6 +1047,9 @@ function dk_click(timeout = 0) {
                         tid = 16
                         pos = 1
                         nonce_str = $.dk_click.nonce_str
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await index()
                     }
                 } catch (e) {
@@ -1034,6 +1107,9 @@ function water_info(timeout = 0) {
                     if ($.water_info.code == 200) {
                         day_num = $.water_info.day_num
                         if ($.water_info.day_num <= 7 && $.water_info.next_time == 0) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await water_click() //开始喝水
                         }
                         if ($.water_info.next_time) {
@@ -1069,6 +1145,9 @@ function water_click(timeout = 0) {
                         tid = 16
                         pos = 1
                         nonce_str = $.water_click.nonce_str
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await index()
                     }
                 } catch (e) {
@@ -1096,6 +1175,9 @@ function sleep_info(timeout = 0) {
                         console.log(`睡觉状态：做梦中\n`);
                         $.message += `【睡觉状态】：做梦中\n`;
                         if (nowTimes.getHours() === 7) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await sleep_end()
                         }
                     }
@@ -1103,6 +1185,9 @@ function sleep_info(timeout = 0) {
                         console.log(`睡觉状态：清醒中\n`);
                         $.message += `【睡觉状态】：清醒中\n`;
                         if (nowTimes.getHours() === 20) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await sleep_start()
                         }
                     }
@@ -1157,6 +1242,9 @@ function sleep_end(timeout = 0) {
                         $.message += `【结束睡觉】：结束睡觉，产生${$.sleep_end.jinbi}金币\n`;
                         taskid = $.sleep_end.taskid
                         nonce_str = $.sleep_end.nonce_str
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await sleep_done() //睡觉奖励
                     }
                 } catch (e) {
@@ -1200,6 +1288,9 @@ function sleep_done(timeout = 0) {
 async function ggk() {
     for (let i = 0; i < 5; i++) {
         setTimeout(async () => {
+            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+            console.log(random);
+            await $.wait(random);
             await gualist()
         }, i * 2000);
     }
@@ -1222,6 +1313,9 @@ function gualist(timeout = 0) {
                         id = idlist.id
                         console.log(`刮刮卡列表：剩余${$.gualist.data.ka}张，下一张${idlist.jine}元\n`);
                         $.message += `【刮刮卡列表】：剩余${$.gualist.data.ka}张，下一张${idlist.jine}元\n`;
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await guadet() //刮卡
                     }
                     if ($.gualist.data.ka && $.gualist.data.ka == 0) {
@@ -1261,16 +1355,41 @@ function guadet(timeout = 0) {
                             $.message += `【刮刮卡领取】：成功领奖\n`;
                             sign = $.guadet.sign
                             glid = $.guadet.glid
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await guapost() //刮卡奖励
                         }
                         if (guacs) {
                             console.log(`【刮刮卡查询】：开启${$.guadet.jine}元,抽中${guacs}等奖\n`)
                             $.message += `【刮刮卡查询】：开启${$.guadet.jine}元,抽中${guacs}等奖\n`;
-                            if (guacs <= 2) {
+
+                            if (guacs <= 3 && nowTimes.getHours() >= 0 && nowTimes.getHours() <= 17) {
                                 console.log(`【刮刮卡领取】：成功领奖\n`)
                                 $.message += `【刮刮卡领取】：成功领奖\n`;
                                 sign = $.guadet.sign
                                 glid = $.guadet.glid
+                                random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                                console.log(random);
+                                await $.wait(random);
+                                await guapost() //刮卡奖励
+                            } else if (guacs <= 4 && nowTimes.getHours() >= 18 && nowTimes.getHours() <= 22) {
+                                console.log(`【刮刮卡领取】：成功领奖\n`)
+                                $.message += `【刮刮卡领取】：成功领奖\n`;
+                                sign = $.guadet.sign
+                                glid = $.guadet.glid
+                                random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                                console.log(random);
+                                await $.wait(random);
+                                await guapost() //刮卡奖励
+                            } else if (guacs <= 5 && nowTimes.getHours() == 23) {
+                                console.log(`【刮刮卡领取】：成功领奖\n`)
+                                $.message += `【刮刮卡领取】：成功领奖\n`;
+                                sign = $.guadet.sign
+                                glid = $.guadet.glid
+                                random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                                console.log(random);
+                                await $.wait(random);
                                 await guapost() //刮卡奖励
                             } else {
                                 console.log(`【刮刮卡领取】：再来一次\n`)
@@ -1278,7 +1397,6 @@ function guadet(timeout = 0) {
                             }
                         }
                     }
-
                 } catch (e) {
                     $.logErr(e, resp);
                 } finally {
@@ -1307,6 +1425,9 @@ function guapost(timeout = 0) {
                         tid = 16
                         pos = 1
                         nonce_str = $.guapost.nonce_str
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await index()
                     }
                 } catch (e) {
@@ -1330,11 +1451,14 @@ function lotteryindex(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 抽手机列表🚩: ${data}`);
                     $.lotteryindex = JSON.parse(data);
-                    if ($.lotteryindex.lottery_count) {
+                    if ($.lotteryindex.data.lottery_count) {
 
-                        console.log(`抽手机列表：剩余${$.lotteryindex.lottery_count}次，手机碎片${$.lotteryindex.phone_part}个，红包碎片${$.lotteryindex.hongbao_part}个\n`);
-                        $.message += `【抽手机列表】：剩余${$.lotteryindex.lottery_count}次，手机碎片${$.lotteryindex.phone_part}个，红包碎片${$.lotteryindex.hongbao_part}个\n`;
-                        if ($.lotteryindex.lottery_count >= 1) {
+                        console.log(`抽手机列表：剩余${$.lotteryindex.data.lottery_count}次，手机碎片${$.lotteryindex.data.phone_part}个，红包碎片${$.lotteryindex.data.hongbao_part}个\n`);
+                        $.message += `【抽手机列表】：剩余${$.lotteryindex.data.lottery_count}次，手机碎片${$.lotteryindex.data.phone_part}个，红包碎片${$.lotteryindex.data.hongbao_part}个\n`;
+                        if ($.lotteryindex.data.lottery_count >= 1) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await lotteryadd() //抽手机抽奖
                         }
                     }
@@ -1356,7 +1480,7 @@ function lotteryadd(timeout = 0) {
                 url: `https://qmyd.yichengw.cn/apps/lottery/add?`,
                 headers: header,
             }
-            $.get(url, async (err, resp, data) => {
+            $.post(url, async (err, resp, data) => {
                 try {
                     if (logs) $.log(`${O}, 抽手机🚩: ${data}`);
                     $.lotteryadd = JSON.parse(data);
@@ -1365,14 +1489,23 @@ function lotteryadd(timeout = 0) {
                         add = $.lotteryindex.data.options.find(item => item.id === $.lotteryadd.data.id);
 
                         console.log(`抽手机：抽中 ${add.name}\n`);
-                        $.message += `【抽手机】：抽中 ${$.lotteryadd.tip}\n`;
+                        $.message += `【抽手机】：抽中 ${add.name}\n`;
 
                         if ($.lotteryadd.data.id == 6) {
                             tid = 16
                             pos = 1
                             nonce_str = $.lotteryadd.data.nonce_str
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await index()
                         }
+                              random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                              console.log(random);
+                              await $.wait(random);
+                              await part()
+
+
                     }
                 } catch (e) {
                     $.logErr(e, resp);
@@ -1399,7 +1532,10 @@ function part(timeout = 0) {
                         console.log(`手机碎片任务：达标${$.part.data.phone_keep_day}天，视频进度${$.part.data.video_jindu}\n`);
                         $.message += `【手机碎片任务】：达标${$.part.data.phone_keep_day}天，视频进度${$.part.data.video_jindu}\n`;
 
-                        if ($.part.data.is_dabiao == 0 && $.lotteryindex.lottery_count == 0) {
+                        if ($.part.data.is_dabiao == 0 && $.lotteryindex.data.lottery_count == 0) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await no_callback() //看视频
                         }
                     }
@@ -1457,7 +1593,10 @@ function cy_info(timeout = 0) {
                         site = $.cy_info.site
                         day_num = $.cy_info.day_num
                         if ($.cy_info.day_num >= 1) {
-                            await cy_click() //答题       
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
+                            await cy_click() //答题
                         }
                     }
                 } catch (e) {
@@ -1489,6 +1628,9 @@ function cy_click(timeout = 0) {
                         tid = 16
                         pos = 1
                         nonce_str = $.cy_click.nonce_str
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await index()
                     }
                 } catch (e) {
@@ -1517,11 +1659,17 @@ function lucky(timeout = 0) {
                         console.log(`转盘列表：剩余${$.lucky.lucky_num}次，已运行${$.lucky.lucky_count}次\n`);
                         $.message += `【转盘列表】：剩余${$.lucky.lucky_num}次，已运行${$.lucky.lucky_count}次\n`;
                         if ($.lucky.lucky_num >= 1) {
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await lucky_click() //转盘抽奖
                         }
                     }
                     if ($.lucky && $.lucky.lucky_box.indexOf('1') >= 0) {
                         box = $.lucky.lucky_box.indexOf('1') + 1
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await lucky_box() //抽奖宝箱
                     }
                 } catch (e) {
@@ -1551,6 +1699,9 @@ function lucky_click(timeout = 0) {
                         tid = 16
                         pos = 1
                         nonce_str = $.lucky_click.nonce_str
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await index()
                     }
                 } catch (e) {
@@ -1581,6 +1732,9 @@ function lucky_box(timeout = 0) {
                         tid = 16
                         pos = 1
                         nonce_str = $.lucky_box.nonce_str
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await index()
                     }
                 } catch (e) {
@@ -1608,6 +1762,9 @@ function jindan_click(timeout = 0) {
                     if ($.jindan_click.code == 200) {
                         taskid = $.jindan_click.taskid
                         nonce_str = $.jindan_click.nonce_str
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await jindan_done() //福利金蛋
                     }
 
@@ -1639,6 +1796,9 @@ function jindan_done(timeout = 0) {
                             nonce_str = $.jindan_done.nonce_str
                             tid = 16
                             pos = 1
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await callback()
                         }
                     } catch (e) {
@@ -1666,6 +1826,9 @@ function box_click(timeout = 0) {
                     if ($.box_click.code == 200) {
                         taskid = $.box_click.taskid
                         nonce_str = $.box_click.nonce_str
+                        random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                        console.log(random);
+                        await $.wait(random);
                         await box_done() //福利宝箱
                     }
 
@@ -1723,6 +1886,9 @@ function news(timeout = 0) {
                         $.message += `【资讯赚页】：今日获得${$.news.jinbi}金币\n`;
                         if ($.news.is_max == 0) {
                             nonce_str = $.news.nonce_str
+                            random = Math.floor(Math.random()*(max-min+1)+min)*1000
+                            console.log(random);
+                            await $.wait(random);
                             await news_done() //资讯赚
                         } else {
                             console.log(`资讯赚：完成\n`);
@@ -1786,19 +1952,31 @@ function tixian_html(timeout = 0) {
                         jine7 = $.tixian_html.tixian_html.find(item => item.jine === '200');
                         jine8 = $.tixian_html.tixian_html.find(item => item.jine === '300');
 
-
-
                         day_tixian_tip = $.tixian_html.tixian_html.find(item => item.day_tixian_tip);
                         await $.wait(1000)
                         if (day_tixian_tip) {
                             console.log(`提现查询：今日已提现\n`);
                             $.message += `【提现查询】：今日已提现\n`;
                         }
-                        console.log(`提现券：剩余${$.tixian_html.tixian_coupon}张券\n${jine2.jine}元：需要${jine2.cond}张券\n${jine3.jine}元：需要${jine3.cond}张券\n${jine4.jine}元：需要${jine4.cond}张券\n${jine5.jine}元：需要${jine5.cond}张券\n`);
-                        $.message += `【提现券】：剩余${$.tixian_html.tixian_coupon}张券\n【${jine2.jine}元】：需要${jine2.cond}张券\n【${jine3.jine}元】：需要${jine3.cond}张券\n【${jine4.jine}元】：需要${jine4.cond}张券\n【${jine5.jine}元】：需要${jine5.cond}张券\n`;
+                        console.log(`提现签到：已签到${$.tixian_html.tixian_sign_day}天\n提现券：剩余${$.tixian_html.tixian_coupon}张券\n${jine2.jine}元：需要${jine2.cond}张券\n${jine3.jine}元：需要${jine3.cond}张券\n${jine4.jine}元：需要${jine4.cond}张券\n${jine5.jine}元：需要${jine5.cond}张券\n`);
+                        $.message += `【提现签到】：已签到${$.tixian_html.tixian_sign_day}天\n【提现券】：剩余${$.tixian_html.tixian_coupon}张券\n【${jine2.jine}元】：需要${jine2.cond}张券\n【${jine3.jine}元】：需要${jine3.cond}张券\n【${jine4.jine}元】：需要${jine4.cond}张券\n【${jine5.jine}元】：需要${jine5.cond}张券\n`;
+
+                        if (jine6.fenshu_tixian_tip) {
+
+                            fenshu6 = jine6.fenshu_tixian_tip.split('今日剩余')[1].split('份')[0]
+                            fenshu7 = jine7.fenshu_tixian_tip.split('今日剩余')[1].split('份')[0]
+                            fenshu8 = jine8.fenshu_tixian_tip.split('今日剩余')[1].split('份')[0]
+
+                            console.log(`${jine6.jine}元：${jine6.fenshu_tixian_tip}\n${jine6.jine}元：${jine6.fenshu_tixian_tip}\n${jine6.jine}元：${jine6.fenshu_tixian_tip}\n`);
+                            $.message += `【${jine6.jine}元】：${jine6.fenshu_tixian_tip}\n【${jine7.jine}元】：${jine7.fenshu_tixian_tip}\n【${jine8.jine}元】：${jine8.fenshu_tixian_tip}\n`;
+
+                        }
+
+
 
                         if (!day_tixian_tip && ($.user.wx_username != "" || $.user.is_weixin == 1)) {
-                            if (CASH == 0.3 && $.user.money >= CASH && $.user.day_jinbi >= 6000) {
+
+                            if (CASH == 0.3 && $.user.money >= CASH && (jine1.cond == 0 || $.tixian_html.tixian_sign_day >= 3)) {
                                 await tixian() //提现
                             }
                             if (CASH == 1 && $.tixian_html.tixian_coupon >= 3 && $.user.money >= CASH) {
@@ -1828,7 +2006,7 @@ function tixian_html(timeout = 0) {
                                     CASH = 10
                                 } else if ($.user.money > 1 && $.tixian_html.tixian_coupon >= 3) {
                                     CASH = 1
-                                } else if ($.user.money > 0.3 && $.user.day_jinbi >= 6000) {
+                                } else if ($.user.money > 0.3 && (jine1.cond == 0 || $.tixian_html.tixian_sign_day >= 3)) {
                                     CASH = 0.3
                                 }
                                 if (CASH != 888) {
