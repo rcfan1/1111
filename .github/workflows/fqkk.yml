@@ -6,7 +6,7 @@ name: fqkk(番茄看看)
 on:
   workflow_dispatch:
   schedule:
-     - cron: '15 2,4,8,10,12 * * *'
+     - cron: '15 2,4,7,9,11 * * *'
   watch:
     types: started
 #env:
