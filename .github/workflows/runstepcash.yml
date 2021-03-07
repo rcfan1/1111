@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/adw2s/Action.git ~/Scripts
+          git clone https://github.com/jake3737/1111.git ~/Scripts
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -44,11 +44,11 @@ jobs:
           npm install -g npm
           npm update
 
-      - name: '运行 【17runstep(走路赚钱cash)】'
+      - name: '运行 【runstep(走路赚钱cash)】'
         if: env.RUNSTEP_TOKEN
         run: |
           cd ~/Scripts
-          node Task/17runstepcash.js
+          node Task/runstepcash.js
         env:
           RUNSTEP_TOKEN: ${{ secrets.RUNSTEP_TOKEN }}
           RUNSTEP_KEY: ${{ secrets.RUNSTEP_KEY }}
