@@ -6,7 +6,7 @@ name: 16ysm(云扫码)
 on:
   workflow_dispatch:
   schedule:
-     - cron: '35 0-16 * * *'
+     - cron: '35 2-14 * * *'
   watch:
     types: started
 #env:
