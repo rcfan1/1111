@@ -30,7 +30,7 @@ https://raw.githubusercontent.com/age174/-/main/feizao.box.json
 圈X配置如下，其他软件自行测试，定时可以多设置几次，没任务会停止运行的
 [task_local]
 #春风转
-15 13 * * * https://raw.githubusercontent.com/age174/-/main/cfz.js, tag=春风转, img-url=https://ae01.alicdn.com/kf/U8a3a2572bf5d4584928d1d7cde52b50ba.jpg, enabled=true
+/30 8-22 * * * https://raw.githubusercontent.com/age174/-/main/cfz.js, tag=春风转, img-url=https://ae01.alicdn.com/kf/U8a3a2572bf5d4584928d1d7cde52b50ba.jpg, enabled=true
 
 
 [rewrite_local]
@@ -59,7 +59,7 @@ hostname = cf-api.douzhuanapi.cn
 const $ = new Env('春风转');
 let status;
 status = (status = ($.getval("cfzstatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
-const cfzurlArr = ['http://cf-api.douzhuanapi.cn:10002/api/article/list?city_type=1&page=2&slide=1&tag_id=0&type=1'], cfzhdArr = ['{"Accept":"*/*","Accept-Encoding":"gzip, deflate","Accept-Language":"zh-Hans-CN;q=1","Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5OTIyZTdiNmE4IiwiaWF0IjoxNjE1NDM0Mjg2LCJuYmYiOjE2MTU0MzQyODYsImV4cCI6MTYxODAyNjI4NiwidWlkIjoxMjEyNjQyLCJuYW1lIjoiXHU3YzczXHU2MzA5XHU0ZTRiXHU1MTQ5IiwiY3JlYXRlZF9hdCI6IjIwMjEtMDMtMTEgMTE6NDQ6NDYiLCJjaXR5X25hbWUiOm51bGwsImNpdHlfY29kZSI6bnVsbH0.3EDgMNXAA3U_YhyLGkt-TORX0oT9CImjE2bHvqGWZoE","Connection":"close","Host":"cf-api.douzhuanapi.cn:10002","User-Agent":"NormalDemo/1 (iPhone; iOS 12.4.7; Scale/3.00)","X-CCMS":"SXBJamdsZ2dseS5nYWpnbGs=","X-IMEI":"56C39562-B8E3-4E88-A74B-98A857859FB7","X-V":"1","osType":"iOS","phoneModel":"iPhone 6 Plus","platform":"iOS","versioncode":"1"}'],cfzsbhdArr = ['{"Accept":"*/*","Accept-Encoding":"gzip, deflate","Accept-Language":"zh-Hans-CN;q=1","Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5OTIyZTdiNmE4IiwiaWF0IjoxNjE1NDM0Mjg2LCJuYmYiOjE2MTU0MzQyODYsImV4cCI6MTYxODAyNjI4NiwidWlkIjoxMjEyNjQyLCJuYW1lIjoiXHU3YzczXHU2MzA5XHU0ZTRiXHU1MTQ5IiwiY3JlYXRlZF9hdCI6IjIwMjEtMDMtMTEgMTE6NDQ6NDYiLCJjaXR5X25hbWUiOm51bGwsImNpdHlfY29kZSI6bnVsbH0.3EDgMNXAA3U_YhyLGkt-TORX0oT9CImjE2bHvqGWZoE","Connection":"close","Content-Length":"47","Content-Type":"application/x-www-form-urlencoded","Host":"cf-api.douzhuanapi.cn:10002","User-Agent":"NormalDemo/1 (iPhone; iOS 12.4.7; Scale/3.00)","X-CCMS":"SXBJamdsamxhai5kZGxnYUk=","X-IMEI":"56C39562-B8E3-4E88-A74B-98A857859FB7","X-V":"1","osType":"iOS","phoneModel":"iPhone 6 Plus","platform":"iOS","versioncode":"1"}'],cfzcount = ''
+const cfzurlArr = ['http://cf-api.douzhuanapi.cn:10002/api/article/list?city_type=1&page=3&slide=1&tag_id=0&type=1'], cfzhdArr = ['{"Connection":"keep-alive","Accept-Encoding":"gzip, deflate","X-V":"1","osType":"iOS","User-Agent":"NormalDemo/1 (iPhone; iOS 13.5.1; Scale/2.00)","platform":"iOS","Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5N2FkZDA1MDk2IiwiaWF0IjoxNjE1NDI4MzE3LCJuYmYiOjE2MTU0MjgzMTcsImV4cCI6MTYxODAyMDMxNywidWlkIjoxMjEyMjg5LCJuYW1lIjoiMVx1OTA0N1x1ODljMSIsImNyZWF0ZWRfYXQiOiIyMDIxLTAzLTExIDEwOjA1OjE2IiwiY2l0eV9uYW1lIjpudWxsLCJjaXR5X2NvZGUiOm51bGx9.1MBPqtLoIxNkRD2YvQOp_RSBreBuFEbziPgySF-Ws8E","X-IMEI":"1C190781-3C62-4A37-9A02-477F7E950E79","versioncode":"1","Host":"cf-api.douzhuanapi.cn:10002","phoneModel":"iPhone 7","Accept-Language":"zh-Hans-CN;q=1","Accept":"*/*","X-CCMS":"SXBJamdsYXRsZC5nSWdwSWw="}'],cfzsbhdArr = ['{"Content-Length":"47","Connection":"keep-alive","Accept-Encoding":"gzip, deflate","X-V":"1","Content-Type":"application/x-www-form-urlencoded","osType":"iOS","User-Agent":"NormalDemo/1 (iPhone; iOS 13.5.1; Scale/2.00)","platform":"iOS","Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5N2FkZDA1MDk2IiwiaWF0IjoxNjE1NDI4MzE3LCJuYmYiOjE2MTU0MjgzMTcsImV4cCI6MTYxODAyMDMxNywidWlkIjoxMjEyMjg5LCJuYW1lIjoiMVx1OTA0N1x1ODljMSIsImNyZWF0ZWRfYXQiOiIyMDIxLTAzLTExIDEwOjA1OjE2IiwiY2l0eV9uYW1lIjpudWxsLCJjaXR5X2NvZGUiOm51bGx9.1MBPqtLoIxNkRD2YvQOp_RSBreBuFEbziPgySF-Ws8E","X-IMEI":"1C190781-3C62-4A37-9A02-477F7E950E79","versioncode":"1","Host":"cf-api.douzhuanapi.cn:10002","phoneModel":"iPhone 7","Accept-Language":"zh-Hans-CN;q=1","Accept":"*/*","X-CCMS":"SXBJamdsYXRqay5JZGdkbGo="}'],cfzcount = ''
 let cfzurl = $.getdata('cfzurl')
 let cfzhd = $.getdata('cfzhd')
 let cfzsbhd = $.getdata('cfzsbhd')
@@ -68,8 +68,15 @@ let cfzlb = '',cfzid = '',cfzmc = '',page = 1
   if (typeof $request !== "undefined") {
     await cfzck()
 
-  } else {
+  } else {cfzurlArr.push($.getdata('cfzurl'))
+    cfzhdArr.push($.getdata('cfzhd'))
+    cfzsbhdArr.push($.getdata('cfzsbhd'))
     let cfzcount = ($.getval('cfzcount') || '1');
+  for (let i = 2; i <= cfzcount; i++) {
+    cfzurlArr.push($.getdata(`cfzurl${i}`))
+    cfzhdArr.push($.getdata(`cfzhd${i}`))
+    cfzsbhdArr.push($.getdata(`cfzsbhd${i}`))
+  }
     console.log(`------------- 共${cfzhdArr.length}个账号-------------\n`)
       for (let i = 0; i < cfzhdArr.length; i++) {
         if (cfzhdArr[i]) {
@@ -80,8 +87,13 @@ let cfzlb = '',cfzid = '',cfzmc = '',page = 1
           $.index = i + 1;
           console.log(`\n开始【春风转${$.index}】`)
           //await cfzhhb();
-            await cfzqd();
+    for (let i = 0; i < 20; i++) {
+            $.index = i + 1
+console.log('\n'+`春风转开始执行循环阅读，本次共执行20次，已执行${i+1}次`)
 
+            await cfzqd()
+            await $.wait(31000);
+            }
   }
 }}
 
@@ -127,7 +139,8 @@ let url = {
 
 } else {
 
-console.log('\n春风转[领取阅读奖励]回执:失败🌚'+result.message)
+console.log('\n春风转[领取阅读奖励]回执:失败🌚'+result.message+'\n恭喜您，您的账号黑了，尝试上报数据修复，提示上报数据成功请关闭脚本等待一分钟再次运行试试')
+await cfzxf();
 
 }
 
@@ -174,7 +187,7 @@ function cfztj(timeout = 0) {
   return new Promise((resolve) => {
 let url = {
         url : 'http://cf-api.douzhuanapi.cn:10002/api/ad_sense/report',
-        headers : JSON.parse(cfzsbhd),
+        headers : JSON.parse(cfzhd),
         body : 'ad_source=1&location=3&position=8&report_type=1',
 
         }
@@ -184,8 +197,6 @@ let url = {
     const result = JSON.parse(data)
         if(result.code == 200){
         console.log('\n春风转[数据上报]回执:成功🌝'+result.data)
-await $.wait(32000);
-await cfzqd()
 } else {
 console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
 
@@ -201,14 +212,41 @@ console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
 }
 
 
+//春风转修复系统错误
+function cfzxf(timeout = 0) {
+  return new Promise((resolve) => {
+let url = {
+        url : 'http://cf-api.douzhuanapi.cn:10002/api/ad_sense/report',
+        headers : JSON.parse(cfzhd),
+        body : 'ad_source=1&location=3&position=8&report_type=1',
 
+        }
+      $.post(url, async (err, resp, data) => {
+        try {
+
+    const result = JSON.parse(data)
+        if(result.code == 200){
+        console.log('\n春风转[数据上报]回执:成功🌝'+result.data)
+} else {
+console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
+
+}
+
+        } catch (e) {
+          //$.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+    },timeout)
+  })
+}
 //春风转列表
 function cfzqd(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
       if (typeof $.getdata('cfzhd') === "undefined") {
-//        $.msg($.name,"",'请先获取春风转数据!😓',)
-//        $.done()
+        $.msg($.name,"",'请先获取春风转数据!😓',)
+        $.done()
       }
 page++
 let sjs = Math.floor(Math.random()*1000); //生成随机数
