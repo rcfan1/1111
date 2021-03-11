@@ -1,5 +1,5 @@
 /*
-软件名称:春风转 
+软件名称:春风转
 更新时间：2021-03-11 @肥皂
 脚本说明：春风转
 脚本为自动阅读新闻
@@ -8,7 +8,7 @@
 每日任务我慢慢添加，暂时没加入
 
 
-下载地址 
+下载地址
 https://ss.tblk.me/QsApR
 
 二维码地址 https://raw.githubusercontent.com/age174/-/main/4705AE1B-41ED-4341-9CCD-5E06F3372D30.jpeg
@@ -21,7 +21,7 @@ https://ss.tblk.me/QsApR
 
 TG电报群: https://t.me/hahaha8028
 
-boxjs地址 :  
+boxjs地址 :
 
 https://raw.githubusercontent.com/age174/-/main/feizao.box.json
 
@@ -59,7 +59,7 @@ hostname = cf-api.douzhuanapi.cn
 const $ = new Env('春风转');
 let status;
 status = (status = ($.getval("cfzstatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
-const cfzurlArr = ['http://cf-api.douzhuanapi.cn:10002/api/article/list?city_type=1&page=2&slide=1&tag_id=0&type=1'], cfzhdArr = ['{"Connection":"keep-alive","Accept-Encoding":"gzip, deflate","X-V":"1","osType":"iOS","User-Agent":"NormalDemo/1 (iPad; iOS 14.4; Scale/2.00)","platform":"iOS","Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5NzczYjE0Y2FlIiwiaWF0IjoxNjE1NDI3Mzg3LCJuYmYiOjE2MTU0MjczODcsImV4cCI6MTYxODAxOTM4NywidWlkIjoxMjEyMjEyLCJuYW1lIjoiXHU1ZmQ4XHU1ZmU3IiwiY3JlYXRlZF9hdCI6IjIwMjEtMDMtMTEgMDk6NDk6NDciLCJjaXR5X25hbWUiOm51bGwsImNpdHlfY29kZSI6bnVsbH0.W7Ab9_3QvZy03TRFBrdIBgnF-aVQCMCxDMl8jJWuTl8","X-IMEI":"F4F363C3-B217-451B-A49F-CB5633572CDB","versioncode":"1","Host":"cf-api.douzhuanapi.cn:10002","phoneModel":"iPad7,5","Accept-Language":"zh-Hans-CN;q=1, en-CN;q=0.9, zh-Hant-CN;q=0.8","Accept":"*/*","X-CCMS":"SXBJamdka2pnZC5kbHBhcGw="}'],cfzsbhdArr = ['{"Content-Length":"47","Connection":"keep-alive","Accept-Encoding":"gzip, deflate","X-V":"1","Content-Type":"application/x-www-form-urlencoded","osType":"iOS","User-Agent":"NormalDemo/1 (iPad; iOS 14.4; Scale/2.00)","platform":"iOS","Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5NzczYjE0Y2FlIiwiaWF0IjoxNjE1NDI3Mzg3LCJuYmYiOjE2MTU0MjczODcsImV4cCI6MTYxODAxOTM4NywidWlkIjoxMjEyMjEyLCJuYW1lIjoiXHU1ZmQ4XHU1ZmU3IiwiY3JlYXRlZF9hdCI6IjIwMjEtMDMtMTEgMDk6NDk6NDciLCJjaXR5X25hbWUiOm51bGwsImNpdHlfY29kZSI6bnVsbH0.W7Ab9_3QvZy03TRFBrdIBgnF-aVQCMCxDMl8jJWuTl8","X-IMEI":"F4F363C3-B217-451B-A49F-CB5633572CDB","versioncode":"1","Host":"cf-api.douzhuanapi.cn:10002","phoneModel":"iPad7,5","Accept-Language":"zh-Hans-CN;q=1, en-CN;q=0.9, zh-Hant-CN;q=0.8","Accept":"*/*","X-CCMS":"SXBJamdka2p0YS5wbGpkcGc="}'],cfzcount = ''
+const cfzurlArr = ['http://cf-api.douzhuanapi.cn:10002/api/article/list?city_type=1&page=3&slide=1&tag_id=0&type=1'], cfzhdArr = ['{"Connection":"keep-alive","Accept-Encoding":"gzip, deflate","X-V":"1","osType":"iOS","User-Agent":"NormalDemo/1 (iPhone; iOS 13.5.1; Scale/2.00)","platform":"iOS","Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5N2FkZDA1MDk2IiwiaWF0IjoxNjE1NDI4MzE3LCJuYmYiOjE2MTU0MjgzMTcsImV4cCI6MTYxODAyMDMxNywidWlkIjoxMjEyMjg5LCJuYW1lIjoiMVx1OTA0N1x1ODljMSIsImNyZWF0ZWRfYXQiOiIyMDIxLTAzLTExIDEwOjA1OjE2IiwiY2l0eV9uYW1lIjpudWxsLCJjaXR5X2NvZGUiOm51bGx9.1MBPqtLoIxNkRD2YvQOp_RSBreBuFEbziPgySF-Ws8E","X-IMEI":"1C190781-3C62-4A37-9A02-477F7E950E79","versioncode":"1","Host":"cf-api.douzhuanapi.cn:10002","phoneModel":"iPhone 7","Accept-Language":"zh-Hans-CN;q=1","Accept":"*/*","X-CCMS":"SXBJamdsYXRsZC5nSWdwSWw="}'],cfzsbhdArr = ['{"Content-Length":"47","Connection":"keep-alive","Accept-Encoding":"gzip, deflate","X-V":"1","Content-Type":"application/x-www-form-urlencoded","osType":"iOS","User-Agent":"NormalDemo/1 (iPhone; iOS 13.5.1; Scale/2.00)","platform":"iOS","Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5N2FkZDA1MDk2IiwiaWF0IjoxNjE1NDI4MzE3LCJuYmYiOjE2MTU0MjgzMTcsImV4cCI6MTYxODAyMDMxNywidWlkIjoxMjEyMjg5LCJuYW1lIjoiMVx1OTA0N1x1ODljMSIsImNyZWF0ZWRfYXQiOiIyMDIxLTAzLTExIDEwOjA1OjE2IiwiY2l0eV9uYW1lIjpudWxsLCJjaXR5X2NvZGUiOm51bGx9.1MBPqtLoIxNkRD2YvQOp_RSBreBuFEbziPgySF-Ws8E","X-IMEI":"1C190781-3C62-4A37-9A02-477F7E950E79","versioncode":"1","Host":"cf-api.douzhuanapi.cn:10002","phoneModel":"iPhone 7","Accept-Language":"zh-Hans-CN;q=1","Accept":"*/*","X-CCMS":"SXBJamdsYXRqay5JZGdkbGo="}'],cfzcount = ''
 let cfzurl = $.getdata('cfzurl')
 let cfzhd = $.getdata('cfzhd')
 let cfzsbhd = $.getdata('cfzsbhd')
@@ -67,13 +67,13 @@ let cfzlb = '',cfzid = '',cfzmc = '',page = 1
 !(async () => {
   if (typeof $request !== "undefined") {
     await cfzck()
-   
+
   } else {
     let cfzcount = ($.getval('cfzcount') || '1');
     console.log(`------------- 共${cfzhdArr.length}个账号-------------\n`)
       for (let i = 0; i < cfzhdArr.length; i++) {
         if (cfzhdArr[i]) {
-         
+
           cfzurl = cfzurlArr[i];
           cfzhd = cfzhdArr[i];
           cfzsbhd = cfzsbhdArr[i];
@@ -81,7 +81,7 @@ let cfzlb = '',cfzid = '',cfzmc = '',page = 1
           console.log(`\n开始【春风转${$.index}】`)
           //await cfzhhb();
             await cfzqd();
-            
+
   }
 }}
 
@@ -100,7 +100,7 @@ $.log(cfzhd)
    $.msg($.name,"",'春风转'+`${status}` +'阅读数据获取成功！')
   }
 if ($request.url.indexOf("ad_sense/report") > -1) {
- 
+
   const cfzsbhd = JSON.stringify($request.headers)
         if(cfzsbhd)    $.setdata(cfzsbhd,`cfzsbhd${status}`)
 $.log(cfzsbhd)
@@ -118,19 +118,19 @@ let url = {
         }
       $.get(url, async (err, resp, data) => {
         try {
-           
+
     const result = JSON.parse(data)
         if(result.code == 200){
-        console.log('\n春风转[领取阅读奖励]回执:成功🌝 \n获得奖励: '+result.data.amount+'金币，等待30秒继续领取')       
+        console.log('\n春风转[领取阅读奖励]回执:成功🌝 \n获得奖励: '+result.data.amount+'金币，等待30秒继续领取')
            await cfzsb();
-           
-           
+
+
 } else {
-     
+
 console.log('\n春风转[领取阅读奖励]回执:失败🌚'+result.message)
 
 }
-   
+
         } catch (e) {
           //$.logErr(e, resp);
         } finally {
@@ -146,20 +146,20 @@ function cfzsb(timeout = 0) {
 let url = {
         url : 'http://cf-api.douzhuanapi.cn:10002/api/self_read_init?item_id='+cfzid,
         headers : JSON.parse(cfzhd),
-        
+
         }
       $.get(url, async (err, resp, data) => {
         try {
-           
+
     const result = JSON.parse(data)
         if(result.code == 200){
-        //console.log('\n春风转[数据上报]回执:成功🌝'+result.message)  
+        //console.log('\n春风转[数据上报]回执:成功🌝'+result.message)
 await cfztj()
 } else {
 console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
 
 }
-   
+
         } catch (e) {
           //$.logErr(e, resp);
         } finally {
@@ -176,21 +176,21 @@ let url = {
         url : 'http://cf-api.douzhuanapi.cn:10002/api/ad_sense/report',
         headers : JSON.parse(cfzsbhd),
         body : 'ad_source=1&location=3&position=8&report_type=1',
-        
+
         }
       $.post(url, async (err, resp, data) => {
         try {
-           
+
     const result = JSON.parse(data)
         if(result.code == 200){
-        console.log('\n春风转[数据上报]回执:成功🌝'+result.data)  
+        console.log('\n春风转[数据上报]回执:成功🌝'+result.data)
 await $.wait(32000);
 await cfzqd()
 } else {
 console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
 
 }
-   
+
         } catch (e) {
           //$.logErr(e, resp);
         } finally {
@@ -215,7 +215,7 @@ let sjs = Math.floor(Math.random()*1000); //生成随机数
 let url = {
         url : 'http://cf-api.douzhuanapi.cn:10002/api/article/list?city_type=1&page='+sjs+'&slide='+sjs+'&tag_id=0&type=1',
         headers : JSON.parse(cfzhd),
-        
+
 }
       $.get(url, async (err, resp, data) => {
 cfzlb = data.match(/"list":(.*)/)[1]
@@ -226,14 +226,14 @@ cfzmc = cfzlb.match(/"title":"(.+?)","/)[1]
         try {
     const result = JSON.parse(data)
         if(result.code == 200){
-     
+
 
         console.log('\n春风转[阅读列表]回执:成功🌝  \n📄阅读ID:'+cfzid+'\n📑开始阅读:'+cfzmc)
        await $.wait(1000);
         await cfzyd();
 } else {
 console.log('春风转[阅读列表]回执:失败🚫 '+result.message)
-     
+
 }
         } catch (e) {
           //$.logErr(e, resp);
