@@ -6,7 +6,7 @@ name: 春风转
 on:
   workflow_dispatch:
   schedule:
-    - cron: '45 7 * * *'
+    - cron: '*/30 0-14 * * *'
   watch:
     types: started
 
