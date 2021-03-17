@@ -4,7 +4,7 @@ name: fqkk
 on:
   workflow_dispatch:
   schedule:
-     - cron: '2 1-11 * * *'
+     - cron: '2 1-13 * * *'
   watch:
     types: started
 jobs:
